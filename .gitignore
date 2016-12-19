@@ -1,0 +1,18 @@
+.gradle/
+.idea/
+build/
+gradle/
+*.iml
+
+#-------------divide line----------------
+#下面是自动生成的
+/.gradle
+/.idea
+/build
+/gradle
+/local.properties
+/MyApp.iml
+/MyTest.iml
+/AppLib/build/generated
+/MyTest/build/outputs
+/MyTest/build/generated
