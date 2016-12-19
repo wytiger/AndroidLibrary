@@ -29,40 +29,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UnclickGrayActivity"
-            android:label="@string/title_activity_gray_unclickable" >
-        </activity>
-        <activity
-            android:name=".WindowDemoActivity"
-            android:label="WindowTest" >
-        </activity>
-        <activity
-            android:name=".SurfaceZoomActivity"
-            android:label="WindowSwitchTest" >
-        </activity>
-        <activity
-            android:name=".ZoomActivity"
-            android:label="@string/title_activity_zoom" >
-        </activity>
-        <activity
-            android:name=".ZoomActivity2"
-            android:label="@string/title_activity_zoom" >
-        </activity>
-        <activity
             android:name=".CheckPermissionActivity"
             android:label="@string/title_activity_check_permission" >
-        </activity>
-        <activity
-            android:name=".WakeLockActivity"
-            android:label="@string/title_activity_wake_lock" >
-        </activity>
-         <activity
-            android:name=".SystemUIActivity"
-            android:label="@string/title_activity_system_ui" >
-        </activity>
-        <activity
-            android:name=".ScreenActivity"            
-            android:label="activity_screen" >
         </activity>
         <activity
             android:name=".HeartBeatActivity"

@@ -1,55 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ff660000"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnGrayUnckickable"
+        android:id="@+id/btnTest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="GrayUnckickable" />
+        android:text="Test" />
 
-    <Button
-        android:id="@+id/btnWindow"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="WindowDemo" />
-
-    <Button
-        android:id="@+id/btnSurfaceZoom"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="SurfaceZoom" />
-
-    <Button
-        android:id="@+id/btnZoom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Zoom" />
-
-    <Button
-        android:id="@+id/btnCheckPermission"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="CheckPermission" />
-
-    <Button
-        android:id="@+id/btnHeartBeat"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="HeartBeat" />
-
-    <Button
-        android:id="@+id/btnSystemUI"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="SystemUI" />
-
-    <Button
-        android:id="@+id/btnScreen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Screen" />
 
 </LinearLayout>
