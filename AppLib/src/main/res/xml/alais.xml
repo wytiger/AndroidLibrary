@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<alias xmlns:android="http://schemas.android.com/apk/res/android">  
+      
+    <intent android:action="android.alis.action.STARTMAIN"  
+        android:targetPackage="com.wytiger.changeicon"  
+        android:targetClass="com.wytiger.changeicon.MainActivity"/>  
+      
+</alias>  

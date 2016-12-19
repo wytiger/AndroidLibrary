@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval" >"
+<!--shape指定形状  -->
+    
+    <!-- stroke定义轮廓 -->
+    <stroke
+        android:width="2dp"
+        android:color="#000" />
+    
+    <!-- corners定义圆的角-->
+    <corners android:radius="30dp" />
+    
+    <!-- solid定义填充颜色 --> 
+    <solid android:color="#ffffff" />
+
+    <!--gradient渐变  -->
+    <gradient 
+        android:startColor="#ffffff"
+        android:endColor="#ffffff"/>   
+    
+ 
+    <!--定义内边距  -->
+    <padding
+        android:left="15dp"
+        android:right="15dp"
+        android:top="5dp"
+        android:bottom="5dp"/>
+   
+</shape>
