@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/uxin_sdk_videocall_video2voice_sel" android:state_pressed="true"/>
+    <item android:drawable="@drawable/uxin_sdk_videocall_video2voice_nor" />
+
+</selector>

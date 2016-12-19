@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wytiger.mytest"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UnclickGrayActivity"
+            android:label="@string/title_activity_gray_unclickable" >
+        </activity>
+        <activity
+            android:name=".WindowDemoActivity"
+            android:label="WindowTest" >
+        </activity>
+        <activity
+            android:name=".SurfaceZoomActivity"
+            android:label="WindowSwitchTest" >
+        </activity>
+        <activity
+            android:name=".ZoomActivity"
+            android:label="@string/title_activity_zoom" >
+        </activity>
+        <activity
+            android:name=".ZoomActivity2"
+            android:label="@string/title_activity_zoom" >
+        </activity>
+        <activity
+            android:name=".CheckPermissionActivity"
+            android:label="@string/title_activity_check_permission" >
+        </activity>
+        <activity
+            android:name=".WakeLockActivity"
+            android:label="@string/title_activity_wake_lock" >
+        </activity>
+         <activity
+            android:name=".SystemUIActivity"
+            android:label="@string/title_activity_system_ui" >
+        </activity>
+        <activity
+            android:name=".ScreenActivity"            
+            android:label="activity_screen" >
+        </activity>
+        <activity
+            android:name=".HeartBeatActivity"
+            android:label="@string/title_activity_heart_beat" >
+        </activity>
+        
+       
+
+       
+
+        <!-- 服务 -->
+        <service android:name=".heartbeat.WriteService" >
+        </service>
+        <!-- 广播 -->
+        <receiver android:name=".heartbeat.HeartBeatReceiver" >
+        </receiver>
+        
+       
+       
+    </application>
+
+</manifest>

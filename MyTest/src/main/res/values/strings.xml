@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyTest</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_gray_unclickable">GrayUnclickableActivity</string>
+    <string name="title_activity_zoom">ZoomActivity</string>
+    <string name="title_activity_surface_switch">SurfaceSwitchActivity</string>
+    <string name="title_activity_check_permission">CheckPermissionActivity</string>
+    <string name="title_activity_wake_lock">WakeLockActivity</string>
+    <string name="title_activity_heart_beat">HeartBeatActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_system_ui">SystemUIActivity</string>
+
+</resources>
