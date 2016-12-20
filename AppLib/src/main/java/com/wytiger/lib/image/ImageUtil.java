@@ -1,11 +1,5 @@
 package com.wytiger.lib.image;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -25,7 +19,13 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
+import android.view.View;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 /**
@@ -359,7 +359,7 @@ public class ImageUtil {
 	/**
 	 * 读取图片的旋转的角度,部分图片带有旋转角度,可以通过这个方法来获取
 	 *
-	 * @param path
+	 * @param imagePath
 	 *            图片绝对路径
 	 * @return  
 	 * 			    图片的旋转角度
@@ -431,5 +431,18 @@ public class ImageUtil {
             return BitmapFactory.decodeByteArray(data, 0, data.length);  
         }  
         return null;  
-    }  
+    }
+
+    /**
+     * 截图
+     *
+     * @param v
+     *            需要进行截图的控件
+     * @return 该控件截图的Bitmap对象。
+     */
+    public static Bitmap captureView(View v) {
+        v.setDrawingCacheEnabled(true);
+        v.buildDrawingCache();
+        return v.getDrawingCache();
+    }
 }

@@ -1,4 +1,4 @@
-package com.wytiger.lib.utils;
+package com.wytiger.lib.manager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * Created by wytiger on 2016-10-17.
- * 登录成功的用户管理器
+ * 存储数据管理器
  */
 
 public class StorageDataManager {
