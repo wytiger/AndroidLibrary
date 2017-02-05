@@ -3,7 +3,7 @@ package com.wytiger.lib.http;
 import android.app.Application;
 
 /**
- * description:
+ * description:使用工厂模式设计框架的框架
  * Created by wytiger on 2016-12-22.
  */
 
