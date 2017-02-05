@@ -2,10 +2,17 @@ package com.wytiger.lib.http;
 
 /**
  * description:
- * Created by wytiger on 2016-12-22.
+ * Created by wytiger on 2017-2-5.
  */
 
-public interface HttpCallback {
-    void onSuccess(String response);
-    void onFailure(Throwable e);
+public abstract class HttpCallback implements IHttpCallback{
+    @Override
+    public void onStart() {
+
+    }
+
+    @Override
+    public void onFinish() {
+
+    }
 }

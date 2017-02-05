@@ -33,7 +33,7 @@ public class VolleyManager implements IHttpManager {
     }
 
     @Override
-    public void get(String url, final HttpCallback requestCallback) {
+    public void get(String url, final IHttpCallback requestCallback) {
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -51,7 +51,7 @@ public class VolleyManager implements IHttpManager {
     }
 
     @Override
-    public void post(String url, String requestBodyJson, final HttpCallback requestCallback) {
+    public void post(String url, String requestBodyJson, final IHttpCallback requestCallback) {
         requestWithBody(url, requestBodyJson, requestCallback, Request.Method.POST);
     }
 
@@ -64,7 +64,7 @@ public class VolleyManager implements IHttpManager {
      * @param requestCallback 回调接口
      * @param method          请求方法
      */
-    private void requestWithBody(String url, String requestBodyJson, final HttpCallback requestCallback, int method) {
+    private void requestWithBody(String url, String requestBodyJson, final IHttpCallback requestCallback, int method) {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(requestBodyJson);

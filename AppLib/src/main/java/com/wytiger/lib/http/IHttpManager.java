@@ -6,7 +6,7 @@ package com.wytiger.lib.http;
  */
 
 public interface IHttpManager {
-    void get(String url, HttpCallback httpCallback);
+    void get(String url, IHttpCallback httpCallback);
 
-    void post(String url, String requestBody, HttpCallback httpCallback);
+    void post(String url, String requestBody, IHttpCallback httpCallback);
 }

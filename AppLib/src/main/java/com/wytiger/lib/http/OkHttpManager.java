@@ -42,7 +42,7 @@ public class OkHttpManager implements IHttpManager {
 
 
     @Override
-    public void get(String url, final HttpCallback httpCallback) {
+    public void get(String url, final IHttpCallback httpCallback) {
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -51,7 +51,7 @@ public class OkHttpManager implements IHttpManager {
     }
 
     @Override
-    public void post(String url, String requestBody, HttpCallback httpCallback) {
+    public void post(String url, String requestBody, IHttpCallback httpCallback) {
         RequestBody body = RequestBody.create(TYPE_JSON, requestBody);
         Request request = new Request.Builder()
                 .url(url)
@@ -60,7 +60,7 @@ public class OkHttpManager implements IHttpManager {
         addCallBack(httpCallback, request);
     }
 
-    private void addCallBack(final HttpCallback requestCallback, Request request) {
+    private void addCallBack(final IHttpCallback requestCallback, Request request) {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(final Call call, final IOException e) {
