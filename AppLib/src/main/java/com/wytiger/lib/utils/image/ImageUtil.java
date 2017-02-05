@@ -1,4 +1,4 @@
-package com.wytiger.lib.image;
+package com.wytiger.lib.utils.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;
