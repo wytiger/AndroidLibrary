@@ -1,2 +1,2 @@
-include ':AppLib'
+include ':Library'
 include ':MyTest'
