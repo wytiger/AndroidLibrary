@@ -1,16 +1,23 @@
-    public class StrictModeUtil{
-	
-	/**
-     * 严格模式，检测违例情况。
+
+package com.wytiger.lib.utils;
+
+import android.annotation.TargetApi;
+import android.os.StrictMode;
+
+public class StrictModeUtil {
+
+    /**
+     * 鍚姩涓ユ牸妯″紡
      */
-    private void setStrictMode() {
+    @TargetApi(14)
+    private void startStrictMode() {
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectAll() //disk,network,resourceMismatches等
+                .detectAll() //ThreadPolicy
                 .penaltyLog()
                 .build());
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectAll() //acitivity,broadcast,sql,io等
+                .detectAll() //VmPolicy
                 .penaltyLog()
                 .build());
     }
-	}
+}
