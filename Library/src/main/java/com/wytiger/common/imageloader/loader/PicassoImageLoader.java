@@ -1,4 +1,4 @@
-package com.wytiger.common.imageloader;
+package com.wytiger.common.imageloader.loader;
 
 /**
  * description:
@@ -7,6 +7,8 @@ package com.wytiger.common.imageloader;
 
 import android.content.Context;
 import android.widget.ImageView;
+
+import com.wytiger.common.imageloader.IImageLoader;
 
 /**
  * Picasso.with(myFragment)

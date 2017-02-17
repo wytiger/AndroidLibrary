@@ -19,7 +19,7 @@ import org.json.JSONObject;
  * Created by wytiger on 2016-12-22.
  */
 
-public class VolleyManager implements IHttpManager {
+public class VolleyManager implements IHttpInterface {
     public static RequestQueue mQueue;
 
 

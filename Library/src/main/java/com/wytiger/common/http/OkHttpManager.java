@@ -18,7 +18,7 @@ import okhttp3.Response;
  * Created by wytiger on 2016-12-22.
  */
 
-public class OkHttpManager implements IHttpManager {
+public class OkHttpManager implements IHttpInterface {
     public static final MediaType TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
     private OkHttpClient okHttpClient;
     private Handler handler;
