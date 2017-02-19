@@ -1,4 +1,4 @@
-package com.wytiger.common.http;
+package com.wytiger.common.http.impl;
 
 import android.app.Application;
 
@@ -10,6 +10,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.wytiger.common.http.IHttpCallback;
+import com.wytiger.common.http.IHttpInterface;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,17 +21,17 @@ import org.json.JSONObject;
  * Created by wytiger on 2016-12-22.
  */
 
-public class VolleyManager implements IHttpInterface {
+public class VolleyImpl implements IHttpInterface {
     public static RequestQueue mQueue;
 
 
-    public static VolleyManager getInstance(Application appContext) {
+    public static VolleyImpl getInstance(Application appContext) {
         mQueue = Volley.newRequestQueue(appContext);
         return SingletonHolder.sInstance;
     }
 
     private static class SingletonHolder {
-        private static final VolleyManager sInstance = new VolleyManager();
+        private static final VolleyImpl sInstance = new VolleyImpl();
     }
 
     @Override

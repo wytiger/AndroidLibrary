@@ -1,6 +1,9 @@
-package com.wytiger.common.http;
+package com.wytiger.common.http.impl;
 
 import android.os.Handler;
+
+import com.wytiger.common.http.IHttpCallback;
+import com.wytiger.common.http.IHttpInterface;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -18,12 +21,12 @@ import okhttp3.Response;
  * Created by wytiger on 2016-12-22.
  */
 
-public class OkHttpManager implements IHttpInterface {
+public class OkHttpImpl implements IHttpInterface {
     public static final MediaType TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
     private OkHttpClient okHttpClient;
     private Handler handler;
 
-    private OkHttpManager() {
+    private OkHttpImpl() {
         okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
@@ -33,10 +36,10 @@ public class OkHttpManager implements IHttpInterface {
     }
 
     private static class SingletonHolder {
-        private static final OkHttpManager INSTANCE = new OkHttpManager();
+        private static final OkHttpImpl INSTANCE = new OkHttpImpl();
     }
 
-    public static OkHttpManager getInstance() {
+    public static OkHttpImpl getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
