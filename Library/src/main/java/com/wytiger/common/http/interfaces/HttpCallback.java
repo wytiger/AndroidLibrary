@@ -1,4 +1,4 @@
-package com.wytiger.common.http;
+package com.wytiger.common.http.interfaces;
 
 /**
  * description:

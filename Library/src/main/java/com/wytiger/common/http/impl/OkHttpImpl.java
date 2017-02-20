@@ -2,8 +2,8 @@ package com.wytiger.common.http.impl;
 
 import android.os.Handler;
 
-import com.wytiger.common.http.IHttpCallback;
-import com.wytiger.common.http.IHttpInterface;
+import com.wytiger.common.http.interfaces.IHttpCallback;
+import com.wytiger.common.http.interfaces.IHttpInterface;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

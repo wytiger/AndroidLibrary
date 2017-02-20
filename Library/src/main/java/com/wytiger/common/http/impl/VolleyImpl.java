@@ -10,8 +10,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.wytiger.common.http.IHttpCallback;
-import com.wytiger.common.http.IHttpInterface;
+import com.wytiger.common.http.interfaces.IHttpCallback;
+import com.wytiger.common.http.interfaces.IHttpInterface;
 
 import org.json.JSONException;
 import org.json.JSONObject;

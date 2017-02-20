@@ -3,6 +3,7 @@ package com.wytiger.common.http;
 import android.app.Application;
 
 import com.wytiger.common.http.impl.OkHttpImpl;
+import com.wytiger.common.http.interfaces.IHttpInterface;
 
 /**
  * description:策略模式封装http框架
