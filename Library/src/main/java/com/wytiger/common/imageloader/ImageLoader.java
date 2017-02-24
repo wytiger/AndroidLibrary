@@ -1,6 +1,6 @@
 package com.wytiger.common.imageloader;
 
-import com.wytiger.common.imageloader.loader.GlideImageLoader;
+import com.wytiger.common.imageloader.impl.GlideImageLoader;
 
 /**
  * description:策略模式封装图片加载框架

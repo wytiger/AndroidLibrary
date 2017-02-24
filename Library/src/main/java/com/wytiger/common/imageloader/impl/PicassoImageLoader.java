@@ -1,4 +1,4 @@
-package com.wytiger.common.imageloader.loader;
+package com.wytiger.common.imageloader.impl;
 
 /**
  * description:
@@ -76,10 +76,5 @@ public class PicassoImageLoader implements IImageInterface {
                 .into(imageView);
     }
 
-    @Override
-    public void displayImage(android.support.v4.app.Fragment fragmentV4, ImageView imageView, String url) {
-        Picasso.with(fragmentV4.getActivity())
-                .load(url)
-                .into(imageView);
-    }
+
 }

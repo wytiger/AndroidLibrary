@@ -1,4 +1,4 @@
-package com.wytiger.common.imageloader.loader;
+package com.wytiger.common.imageloader.impl;
 
 /**
  * description:
@@ -72,10 +72,4 @@ public class GlideImageLoader implements IImageInterface {
                 .into(imageView);
     }
 
-    @Override
-    public void displayImage(android.support.v4.app.Fragment fragmentV4, ImageView imageView, String url) {
-        Glide.with(fragmentV4)
-                .load(url)
-                .into(imageView);
-    }
 }
