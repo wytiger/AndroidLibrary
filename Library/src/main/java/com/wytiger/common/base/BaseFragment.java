@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 /**
  * Author: wytiger
  * Time: 2016/7/4
- * Desc: 业务无关的Fragment基类
+ * Desc: Fragment基类
  * 注意：要求关联context必须从BaseActivity派生，否则会崩溃
  */
 public abstract class BaseFragment extends Fragment {
@@ -60,6 +60,17 @@ public abstract class BaseFragment extends Fragment {
 
 
 	protected abstract int getContentViewID();
+	
+	
+    public void showLoadingDialog() {
+        baseActivity.showLoadingDialog();
+    }
+
+
+
+    public void dismissLoadingDialog() {
+        baseActivity.dismissLoadingDialog();
+    }
 
 }
 
