@@ -46,6 +46,7 @@ public class OkHttpImpl implements IHttpInterface {
 
     @Override
     public void get(String url, final IHttpCallback httpCallback) {
+       httpCallback. onStart();
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -55,6 +56,7 @@ public class OkHttpImpl implements IHttpInterface {
 
     @Override
     public void post(String url, String requestBody, IHttpCallback httpCallback) {
+        httpCallback. onStart();
         RequestBody body = RequestBody.create(TYPE_JSON, requestBody);
         Request request = new Request.Builder()
                 .url(url)
@@ -73,7 +75,7 @@ public class OkHttpImpl implements IHttpInterface {
                         requestCallback.onFailure(e);
                     }
                 });
-
+                requestCallback.onFinish();
             }
 
             @Override
@@ -97,6 +99,8 @@ public class OkHttpImpl implements IHttpInterface {
                             requestCallback.onFailure(new IOException(response.message() + ",url=" + call.request().url().toString()));
                         }
                     });
+
+                    requestCallback.onFinish();
                 }
             }
         });

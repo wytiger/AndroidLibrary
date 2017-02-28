@@ -21,4 +21,5 @@ public interface IImageInterface {
     void displayImage(Context context, ImageView imageView, String url);
     void displayImage(Activity activity, ImageView imageView, String url);
     void displayImage(Fragment fragment, ImageView imageView, String url);
+
 }

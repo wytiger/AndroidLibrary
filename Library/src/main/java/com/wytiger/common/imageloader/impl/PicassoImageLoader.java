@@ -1,4 +1,4 @@
-package com.wytiger.common.imageloader.impl;
+package com.wytiger.common.imageloader.loader;
 
 /**
  * description:
@@ -75,6 +75,5 @@ public class PicassoImageLoader implements IImageInterface {
                 .load(url)
                 .into(imageView);
     }
-
 
 }
