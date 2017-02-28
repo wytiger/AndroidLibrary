@@ -15,7 +15,7 @@ import com.wytiger.common.manager.AppManager;
  * @date 2016年2月26日
  */
 public abstract class BaseActivity extends Activity {
-	private static final String TAG = BaseActivity.class.getSimpleName();
+	protected static final String TAG = BaseActivity.class.getSimpleName();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public abstract class BaseActivity extends Activity {
 	 */
 	public void startActivity(Class<? extends Activity> activity) {
 		Intent it = new Intent(this, activity);
-		startActivity(it);		
+		startActivity(it);
 	}
 
 }

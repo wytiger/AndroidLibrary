@@ -1,15 +1,21 @@
 package com.wytiger.common.base;
 
-import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * Author: wytiger
+ * Time: 2016/7/4
+ * Desc: 业务无关的Fragment基类
+ * 注意：要求关联context必须从BaseActivity派生，否则会崩溃
+ */
 public abstract class BaseFragment extends Fragment {
 
-	public Activity mActivity;
+	public BaseActivity baseActivity;
 	
 	/**
 	 * fragment创建
@@ -17,7 +23,7 @@ public abstract class BaseFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mActivity = getActivity();
+		initData();
 	}
 
 	/**
@@ -26,26 +32,16 @@ public abstract class BaseFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
-		View view = initViews();
-		return view;
+		View rootView = inflater.inflate(getContentViewID(), null);
+		initView();
+		return rootView;
 	}
 
-	/**
-	 * 依附的activity创建完成
-	 */
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-
-		initData();
+	public void onAttach(Context context) {
+		super.onAttach(context);
+		baseActivity = (BaseActivity) context;
 	}
-
-	/**
-	 * 子类必须实现初始化布局的方法
-	 * @return
-	 */
-	public abstract View initViews();
 
 	/**
 	 * 初始化数据, 可以不实现
@@ -53,6 +49,17 @@ public abstract class BaseFragment extends Fragment {
 	public void initData() {
 
 	}
+
+
+	/**
+	 * 初始化视图的方法
+	 * @return
+	 */
+	public abstract void initView();
+
+
+
+	protected abstract int getContentViewID();
 
 }
 
