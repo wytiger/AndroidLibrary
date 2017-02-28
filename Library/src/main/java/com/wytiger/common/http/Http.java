@@ -1,6 +1,6 @@
 package com.wytiger.common.http;
 
-import android.app.Application;
+import android.content.Context;
 
 import com.wytiger.common.http.impl.OkHttpImpl;
 
@@ -10,8 +10,8 @@ import com.wytiger.common.http.impl.OkHttpImpl;
  */
 
 public class Http {
-    public static IHttpInterface getHttp(Application appContext) {
-//        return VolleyImpl.getInstance(appContext);
+    public static IHttpInterface getHttp(Context appContext) {
+//        return VolleyImpl.getInstance(appContext.getApplicationContext());
         return OkHttpImpl.getInstance();
     }
 

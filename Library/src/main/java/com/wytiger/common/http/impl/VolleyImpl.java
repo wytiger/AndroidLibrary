@@ -36,17 +36,20 @@ public class VolleyImpl implements IHttpInterface {
 
     @Override
     public void get(String url, final IHttpCallback requestCallback) {
+        requestCallback. onStart();
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
                         requestCallback.onSuccess(s);
+                        requestCallback.onFinish();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         requestCallback.onFailure(volleyError);
+                        requestCallback.onFinish();
                     }
                 });
         mQueue.add(request);
@@ -54,6 +57,7 @@ public class VolleyImpl implements IHttpInterface {
 
     @Override
     public void post(String url, String requestBodyJson, final IHttpCallback requestCallback) {
+        requestCallback. onStart();
         requestWithBody(url, requestBodyJson, requestCallback, Request.Method.POST);
     }
 
@@ -79,12 +83,14 @@ public class VolleyImpl implements IHttpInterface {
                     @Override
                     public void onResponse(JSONObject response) {
                         requestCallback.onSuccess(response != null ? response.toString() : null);
+                        requestCallback.onFinish();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         requestCallback.onFailure(error);
+                        requestCallback.onFinish();
                     }
                 });
         mQueue.add(request);
