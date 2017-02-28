@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AppLibrary</string>
+    <string name="app_name">AndroidLibrary</string>
     <string name="pull_to_refresh_pull_label">下拉可以刷新</string>
     <string name="pull_down_to_refresh_pull_label">上拉可以刷新</string>
     <string name="pull_to_refresh_release_label">释放开始刷新</string>
