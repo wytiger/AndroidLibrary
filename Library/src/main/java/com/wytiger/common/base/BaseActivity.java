@@ -7,7 +7,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.wytiger.common.manager.AppManager;
-import com.wytiger.lib.R;
 
 
 /**
@@ -39,14 +38,14 @@ public abstract class BaseActivity extends Activity {
 	public abstract int setActivityContentView();
 
 	/**
-	 * 初始化数据,子类根据需要实现。
+	 * 初始化数据,在initView之前调用。
 	 */
 	public void initData() {
 
 	}
 
 	/**
-	 * 初始化视图,子类根据需要实现。
+	 * 初始化视图,在initData之后调用。
 	 */
 	public  void initView(){
 		
@@ -54,11 +53,28 @@ public abstract class BaseActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		super.onDestroy();
 		AppManager.removeActivity(this);
+		dismissLoadingDialog();
+		super.onDestroy();
 	}
-	
-	
+
+	/**
+	 * 显示可取消加载进度条
+	 */
+	public void showLoadingDialog() {
+
+
+
+	}
+
+	/**
+	 * 将进度条关闭
+	 */
+	public void dismissLoadingDialog() {
+
+	}
+
+
 	/**
 	 * 显示Toast
 	 * 
@@ -66,8 +82,15 @@ public abstract class BaseActivity extends Activity {
 	 */
 	protected void showToast(String text) {
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-	}	
-	
+	}
+	/**
+	 * 显示Toast
+	 *
+	 * @param text
+	 */
+	protected void showLongToast(String text) {
+		Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+	}
 	/**
 	 * 启动Activity
 	 * 
@@ -77,24 +100,5 @@ public abstract class BaseActivity extends Activity {
 		Intent it = new Intent(this, activity);
 		startActivity(it);		
 	}
-	
-	
-	/**
-	 * 启动Activity,并指定了默认动画(啥也不做,覆盖系统动画, 可能引发部分手机后续Activity卡顿)
-	 * 
-	 * @param activity
-	 *            要跳转到的Activity
-	 */
-	public void startActivity2(Class<? extends Activity> activity) {
-		Intent it = new Intent(this, activity);
-		startActivity(it);
-		//activity切换动画
-		overridePendingTransition(R.anim.anim_activity_enter,
-				R.anim.anim_activity_exit);
-	}
 
-	@Override
-	public void overridePendingTransition(int enterAnim, int exitAnim) {
-		super.overridePendingTransition(enterAnim, exitAnim);
-	}
 }
