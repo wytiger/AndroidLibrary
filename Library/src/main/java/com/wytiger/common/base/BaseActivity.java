@@ -1,13 +1,13 @@
 package com.wytiger.common.base;
 
-import com.wytiger.lib.R;
-import com.wytiger.common.manager.AppManager;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.wytiger.common.manager.AppManager;
+import com.wytiger.lib.R;
 
 
 /**
@@ -23,14 +23,11 @@ public abstract class BaseActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		//设置内容视图
 		setContentView(setActivityContentView());
-		//将activity添加到activity管理器
 		AppManager.addActivity(this);
 
-		/**初始化视图*/
-		initView();
-		/**初始化数据*/
 		initData();
-		
+		initView();
+
 		 //打印当前activity是哪一个activity
 		final String currentActivity = this.getClass().getSimpleName();
 		Log.i(TAG, "currentActivity = " + currentActivity);		
@@ -40,19 +37,19 @@ public abstract class BaseActivity extends Activity {
 	 * 设置Activity的ContentView,抽象方法，子类必须实现
 	 */
 	public abstract int setActivityContentView();
-	
-	/**
-	 * 初始化视图,子类根据需要实现。
-	 */
-	public  void initView(){
-		
-	};
 
 	/**
 	 * 初始化数据,子类根据需要实现。
 	 */
 	public void initData() {
 
+	}
+
+	/**
+	 * 初始化视图,子类根据需要实现。
+	 */
+	public  void initView(){
+		
 	}
 
 	@Override

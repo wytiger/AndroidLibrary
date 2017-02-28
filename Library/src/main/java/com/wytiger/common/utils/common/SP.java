@@ -9,6 +9,10 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
+
+/**
+ * Created by wytiger on 15/9/12.
+ */
 public class SP {
 	public SP() {
 		/* cannot be instantiated */
