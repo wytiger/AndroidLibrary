@@ -78,7 +78,7 @@ public class RetrofitManager {
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
-                .addInterceptor(new AppInterceptor());
+                .addInterceptor(new AppInterceptor());//拦截器
 
         //Debug模式下信任所有证书
         if (BuildConfig.DEBUG) {
@@ -95,10 +95,11 @@ public class RetrofitManager {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
+        walletService = retrofit.create(IAppService.class);
 
+        //BizToken,自动登录
 //        IAppService tempService = retrofit.create(IAppService.class);
 //        walletService = (IAppService) Proxy.newProxyInstance(IAppService.class.getClassLoader(),
 //                new Class<?>[]{IAppService.class}, new AppBizTokenExpiredHandler(tempService));
-        walletService = retrofit.create(IAppService.class);
     }
 }
