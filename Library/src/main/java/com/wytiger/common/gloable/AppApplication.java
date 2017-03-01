@@ -7,8 +7,8 @@ import android.app.Application;
  * 2017/3/1 0001.
  */
 
-public class WalletApplication extends Application {
-    private static WalletApplication sInstance;
+public class AppApplication extends Application {
+    private static AppApplication sInstance;
 
     @Override
     public void onCreate() {
@@ -16,7 +16,7 @@ public class WalletApplication extends Application {
         sInstance = this;
     }
 
-    public static WalletApplication getInstance() {
+    public static AppApplication getInstance() {
         return sInstance;
     }
 

@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.wytiger.common.R;
 import com.wytiger.common.constants.AppConstants;
-import com.wytiger.common.gloable.WalletApplication;
+import com.wytiger.common.gloable.AppApplication;
 import com.wytiger.common.http2.response.BaseResponse;
 import com.wytiger.common.utils.JsonUtils;
 import com.wytiger.common.utils.common.LogUtil;
@@ -67,7 +67,7 @@ public class AppHttpUtil {
         public static NoNetworkResponse newInstance() {
             NoNetworkResponse response = new NoNetworkResponse();
             response.setResult(AppConstants.NO_NETWORK_CODE);
-            response.setRetinfo(WalletApplication.getInstance().getString(R.string.no_network_now));
+            response.setRetinfo(AppApplication.getInstance().getString(R.string.no_network_now));
             response.data = "";
 
             return response;

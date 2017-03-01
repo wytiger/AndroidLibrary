@@ -20,7 +20,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
  */
 public class RetrofitManager {
 
-//     private static final String BASE_URL = AppEnvironment.DEVELOPER_ENVIRONMENT == WalletApplication.environment
+//     private static final String BASE_URL = AppEnvironment.DEVELOPER_ENVIRONMENT == AppApplication.environment
 //            ? "https://wallet.pay1pay.com"
 //            : "https://wallet.pay1pay.com";
 

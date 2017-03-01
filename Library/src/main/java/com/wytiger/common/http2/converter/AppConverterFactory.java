@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 import com.wytiger.common.R;
 import com.wytiger.common.constants.AppConstants;
-import com.wytiger.common.gloable.WalletApplication;
+import com.wytiger.common.gloable.AppApplication;
 import com.wytiger.common.http2.exception.AppEmptyDataException;
 import com.wytiger.common.http2.exception.AppHttpException;
 import com.wytiger.common.http2.response.AppResponse;
@@ -69,7 +69,7 @@ public class AppConverterFactory extends Converter.Factory{
                 LogUtil.e(TAG, "response is null");
                 //服务端返回的数据格式不对
                 throw new AppHttpException(AppConstants.SERVER_DATA_FORMAT_ILLEGAL_CODE,
-                        WalletApplication.getInstance().getString(R.string.error_code_http_exception));
+                        AppApplication.getInstance().getString(R.string.error_code_http_exception));
             }
 
             AppResponse appResponse;
@@ -85,7 +85,7 @@ public class AppConverterFactory extends Converter.Factory{
                 LogUtil.e(TAG, e.getMessage());
                 //服务端返回的数据格式不对
                 throw new AppHttpException(AppConstants.SERVER_DATA_FORMAT_ILLEGAL_CODE,
-                        WalletApplication.getInstance().getString(R.string.error_code_http_exception));
+                        AppApplication.getInstance().getString(R.string.error_code_http_exception));
             }
 
             //0成功，非0失败
@@ -117,7 +117,7 @@ public class AppConverterFactory extends Converter.Factory{
                     LogUtil.e(TAG, e.getMessage());
                     //服务端返回的数据格式不对
                     throw new AppHttpException(AppConstants.SERVER_DATA_FORMAT_ILLEGAL_CODE,
-                            WalletApplication.getInstance().getString(R.string.error_code_http_exception));
+                            AppApplication.getInstance().getString(R.string.error_code_http_exception));
                 }
             }
 
@@ -145,7 +145,7 @@ public class AppConverterFactory extends Converter.Factory{
                 LogUtil.e(TAG, "response is null");
                 //服务端返回的数据格式不对
                 throw new AppHttpException(AppConstants.SERVER_DATA_FORMAT_ILLEGAL_CODE,
-                        WalletApplication.getInstance().getString(R.string.error_code_http_exception));
+                        AppApplication.getInstance().getString(R.string.error_code_http_exception));
             }
 
             BaseResponse baseResponse = null;
@@ -158,7 +158,7 @@ public class AppConverterFactory extends Converter.Factory{
                 LogUtil.e(TAG, e.getMessage());
                 //服务端返回的数据格式不对
                 throw new AppHttpException(AppConstants.SERVER_DATA_FORMAT_ILLEGAL_CODE,
-                        WalletApplication.getInstance().getString(R.string.error_code_http_exception));
+                        AppApplication.getInstance().getString(R.string.error_code_http_exception));
             }
 
             //0成功，非0失败

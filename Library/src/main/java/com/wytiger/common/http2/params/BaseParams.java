@@ -164,8 +164,8 @@ public class BaseParams implements Serializable{
         instance.language = "zh";
         instance.partner = "2000000001";
 //        instance.reqSeqNumber = StringUtils.getUUID();
-//        //instance.appVersion = AppUtils.getVersionName(WalletApplication.getInstance());
-//        instance.appVersion = String.valueOf(AppUtils.getVersionCode(WalletApplication.getInstance()));
+//        //instance.appVersion = AppUtils.getVersionName(AppApplication.getInstance());
+//        instance.appVersion = String.valueOf(AppUtils.getVersionCode(AppApplication.getInstance()));
 //        instance.reqTime = String.valueOf( WalletTimeStampService.getCurrentTimeStamp());
 
         return instance;

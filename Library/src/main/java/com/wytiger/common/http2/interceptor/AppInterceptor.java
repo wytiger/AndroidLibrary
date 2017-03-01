@@ -1,7 +1,7 @@
 package com.wytiger.common.http2.interceptor;
 
 
-import com.wytiger.common.gloable.WalletApplication;
+import com.wytiger.common.gloable.AppApplication;
 import com.wytiger.common.http2.AppHttpUtil;
 import com.wytiger.common.http2.IAppService;
 import com.wytiger.common.http2.params.BaseParams;
@@ -45,7 +45,7 @@ public class AppInterceptor implements Interceptor {
             //网络请求数据
 
             //判断当前网络情形，如果没有网络，不发送网络请求
-            if (!NetUtils.isConnected(WalletApplication.getInstance())) {
+            if (!NetUtils.isConnected(AppApplication.getInstance())) {
                 return AppHttpUtil.buildNoNetworkResponse(originalRequest);
             }
 
