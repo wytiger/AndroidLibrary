@@ -1,6 +1,6 @@
 package com.wytiger.common.keeplive;
 
-import com.wytiger.common.utils.common.L;
+import com.wytiger.common.utils.common.LogUtil;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -18,7 +18,7 @@ public class ScreenOffReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		String action = intent.getAction();
-		L.i(KeepLiveManager.TAG, "ScreenOnOffReceiver onReceive, action = " + action);
+		LogUtil.i(KeepLiveManager.TAG, "ScreenOnOffReceiver onReceive, action = " + action);
 		
 		if (action.equals(Intent.ACTION_SCREEN_OFF) || action.equals(Intent.ACTION_USER_BACKGROUND)) {
 			KeepLiveManager.getInstance().startOnePixelActivity(context);

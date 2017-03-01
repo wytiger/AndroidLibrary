@@ -15,10 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.wytiger.common.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.wytiger.lib.R;
 
 public class TagView extends RelativeLayout {
 

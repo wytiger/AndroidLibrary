@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.wytiger.common.utils.common.L;
+import com.wytiger.common.utils.common.LogUtil;
 import com.wytiger.common.utils.encryp.AESUtil;
 
 import java.util.Arrays;
@@ -60,16 +60,16 @@ public class StorageDataManager {
         SharedPreferences.Editor editor = sharedPref.edit();
         String hasString = getDataString();
         if (hasString.contains(data)) {
-            L.i(TAG, "数据已存在, user = " + data);
+            LogUtil.i(TAG, "数据已存在, user = " + data);
             return;
         } else {
             String temp =hasString + data + ",";
             String temp2 = AESUtil.encrypt(temp);
             editor.putString(SPUserKey, temp2);
             editor.commit();
-            L.i(TAG, "加密前, encryptedString = " + temp);
-            L.i(TAG, "加密后, decryptString = " + temp2);
-            L.i(TAG, "保存数据, data = " + data);
+            LogUtil.i(TAG, "加密前, encryptedString = " + temp);
+            LogUtil.i(TAG, "加密后, decryptString = " + temp2);
+            LogUtil.i(TAG, "保存数据, data = " + data);
         }
     }
 
@@ -77,8 +77,8 @@ public class StorageDataManager {
     public String getDataString() {
         String encryptedString = (String) sharedPref.getString(SPUserKey, "");
         String decryptString = AESUtil.decrypt(encryptedString);
-        L.i(TAG, "解密前, encryptedString = " + encryptedString);
-        L.i(TAG, "解密后, decryptString = " + decryptString);
+        LogUtil.i(TAG, "解密前, encryptedString = " + encryptedString);
+        LogUtil.i(TAG, "解密后, decryptString = " + decryptString);
 
         return decryptString;
     }

@@ -1,6 +1,6 @@
 package com.wytiger.common.keeplive;
 
-import com.wytiger.common.utils.common.L;
+import com.wytiger.common.utils.common.LogUtil;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ public class OnePixelActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		L.i(KeepLiveManager.TAG, "OnePixelActivity onCreate");
+		LogUtil.i(KeepLiveManager.TAG, "OnePixelActivity onCreate");
 
 		KeepLiveManager.getInstance().initOnePixelActivity(this);
 	}
@@ -24,19 +24,19 @@ public class OnePixelActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		L.i(KeepLiveManager.TAG, "OnePixelActivity onResume");
+		LogUtil.i(KeepLiveManager.TAG, "OnePixelActivity onResume");
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		L.i(KeepLiveManager.TAG, "OnePixelActivity onPause");
+		LogUtil.i(KeepLiveManager.TAG, "OnePixelActivity onPause");
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		L.i(KeepLiveManager.TAG, "OnePixelActivity onDestroy");
+		LogUtil.i(KeepLiveManager.TAG, "OnePixelActivity onDestroy");
 	}
 
 }

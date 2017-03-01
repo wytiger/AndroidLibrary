@@ -13,11 +13,11 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
+import com.wytiger.common.R;
+import com.wytiger.common.widget.wheelview.adapters.WheelViewAdapter;
+
 import java.util.LinkedList;
 import java.util.List;
-
-import com.wytiger.lib.R;
-import com.wytiger.common.widget.wheelview.adapters.WheelViewAdapter;
 
 
 /**

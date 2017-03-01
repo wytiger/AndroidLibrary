@@ -15,7 +15,6 @@
  */
 package com.wytiger.common.widget;
 
-import com.wytiger.lib.R;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -34,6 +33,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+
+import com.wytiger.common.R;
 
 
 public class SlideSwitch extends View {

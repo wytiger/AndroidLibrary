@@ -1,8 +1,5 @@
 package com.wytiger.common.widget;
 
-import com.wytiger.common.utils.StringUtil;
-import com.wytiger.lib.R;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -20,6 +17,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.wytiger.common.R;
+import com.wytiger.common.utils.StringUtil;
 
 
 /**

@@ -1,8 +1,5 @@
 package com.wytiger.common.widget;
 
-import com.wytiger.common.utils.ImageUtil;
-import com.wytiger.lib.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -14,6 +11,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+
+import com.wytiger.common.R;
+import com.wytiger.common.utils.ImageUtil;
 
 /**
  * 类似于iPhone的开关控件

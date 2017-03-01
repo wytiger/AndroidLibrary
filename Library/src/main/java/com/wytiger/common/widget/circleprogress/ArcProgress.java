@@ -1,6 +1,5 @@
 package com.wytiger.common.widget.circleprogress;
 
-import com.wytiger.lib.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,6 +14,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.wytiger.common.R;
 
 
 public class ArcProgress extends View {

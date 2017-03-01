@@ -9,7 +9,6 @@
  */
 package com.wytiger.common.widget;
 
-import com.wytiger.lib.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -24,6 +23,8 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import com.wytiger.common.R;
 
 /**
  * 圆角控件RoundCornerImageView；

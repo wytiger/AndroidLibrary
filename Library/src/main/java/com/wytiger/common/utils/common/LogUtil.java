@@ -1,5 +1,9 @@
 package com.wytiger.common.utils.common;
 
+import android.os.Environment;
+import android.text.TextUtils;
+import android.util.Log;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -7,19 +11,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
-import android.os.Environment;
-import android.text.TextUtils;
-import android.util.Log;
-
 /**
  * Log统一管理类
  * 
  * @author wytiger
  * 
  */
-public class L {
-	private static final String TAG = "L";
+public class LogUtil {
+	private static final String TAG = "LogUtil";
 	/** 是否需要打印日志 */
 	public static boolean isDebug = true;
 	/** 是否需要将日志写入文件 */
@@ -31,7 +30,7 @@ public class L {
     public static final String FILE_PATH_DEFAULT = "wytiger";
     
     // ===================================================================================
-    private L() {
+    private LogUtil() {
 		/* cannot be instantiated */
 		throw new UnsupportedOperationException("cannot be instantiated");
 	}

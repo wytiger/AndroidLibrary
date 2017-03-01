@@ -16,4 +16,9 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="hello_world">Hello world!</string>
 
+    <!-- http错误码 -->
+    <string name="no_network_now">网络不给力，请检查网络设置</string>
+    <string name="error_code_http_exception">服务器开小差了，请稍后重试</string>
+    <string name="error_code_cant_access_network">网络连接异常，请检查网络设置</string>
+
 </resources>
