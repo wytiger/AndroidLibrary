@@ -1,9 +1,6 @@
 package com.wytiger.common.imageloader.loader;
 
-/**
- * description:
- * Created by wytiger on 2017-2-5.
- */
+
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -18,9 +15,8 @@ import com.wytiger.common.imageloader.IImageInterface;
 import java.io.File;
 
 /**
- * Picasso.with(myFragment)
- * .load(url)
- * .into(myImageView);
+ * description:
+ * Created by wytiger on 2017-2-5.
  */
 public class PicassoImageLoader implements IImageInterface {
 

@@ -1,9 +1,6 @@
 package com.wytiger.common.imageloader.impl;
 
-/**
- * description:
- * Created by wytiger on 2017-2-5.
- */
+
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -17,9 +14,8 @@ import com.wytiger.common.imageloader.IImageInterface;
 import java.io.File;
 
 /**
- * Glide.with(myFragment)
- * .load(url)
- * .into(myImageView);
+ * description:
+ * Created by wytiger on 2017-2-5.
  */
 public class GlideImageLoader implements IImageInterface {
     private static class SingletonHolder {
