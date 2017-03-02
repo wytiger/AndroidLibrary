@@ -90,18 +90,19 @@ public class OkHttpImpl implements IHttpInterface {
             @Override
             public void onResponse(final Call call, final Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                String json = response.body().string();
+                    try {
+                        final String json = response.body().string();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
                                 requestCallback.onSuccess(json);
                                 requestCallback.onFinish();
-                            } catch (IOException e) {
-                                e.printStackTrace();
                             }
-                        }
-                    });
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    ;
                 } else {
                     handler.post(new Runnable() {
                         @Override
