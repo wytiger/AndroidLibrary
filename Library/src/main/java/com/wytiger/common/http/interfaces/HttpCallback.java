@@ -12,7 +12,7 @@ public abstract class HttpCallback implements IHttpCallback{
     }
 
     @Override
-    public void onFinish() {
+    public void onEnd() {
 
     }
 }

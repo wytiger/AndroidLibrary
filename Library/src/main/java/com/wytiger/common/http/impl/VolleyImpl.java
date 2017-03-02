@@ -44,7 +44,7 @@ public class VolleyImpl implements IHttpInterface {
             @Override
             public void onResponse(String s) {
                 requestCallback.onSuccess(s);
-                requestCallback.onFinish();
+                requestCallback.onEnd();
             }
         };
         //错误监听器
@@ -52,7 +52,7 @@ public class VolleyImpl implements IHttpInterface {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 requestCallback.onFailure(volleyError);
-                requestCallback.onFinish();
+                requestCallback.onEnd();
             }
         };
         //String请求
@@ -93,7 +93,7 @@ public class VolleyImpl implements IHttpInterface {
             @Override
             public void onResponse(String s) {
                 requestCallback.onSuccess(s);
-                requestCallback.onFinish();
+                requestCallback.onEnd();
             }
         };
         //错误监听器
@@ -101,7 +101,7 @@ public class VolleyImpl implements IHttpInterface {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 requestCallback.onFailure(volleyError);
-                requestCallback.onFinish();
+                requestCallback.onEnd();
             }
         };
         //String请求

@@ -9,5 +9,5 @@ public interface IHttpCallback {
     void onStart();
     void onSuccess(String response);
     void onFailure(Throwable e);
-    void onFinish();
+    void onEnd();
 }

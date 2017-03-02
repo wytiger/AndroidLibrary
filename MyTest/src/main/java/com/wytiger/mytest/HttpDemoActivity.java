@@ -49,9 +49,9 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
                     }
 
                     @Override
-                    public void onFinish() {
-                        super.onFinish();
-                        LogUtil.i(Thread.currentThread().getName() + ": onFinish");
+                    public void onEnd() {
+                        super.onEnd();
+                        LogUtil.i(Thread.currentThread().getName() + ": onEnd");
                     }
                 });
                 break;
@@ -76,9 +76,9 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
                     }
 
                     @Override
-                    public void onFinish() {
-                        super.onFinish();
-                        LogUtil.i(Thread.currentThread().getName() + ": onFinish");
+                    public void onEnd() {
+                        super.onEnd();
+                        LogUtil.i(Thread.currentThread().getName() + ": onEnd");
                     }
                 });
                 break;

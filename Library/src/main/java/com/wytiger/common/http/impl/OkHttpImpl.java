@@ -81,7 +81,7 @@ public class OkHttpImpl implements IHttpInterface {
                     @Override
                     public void run() {
                         requestCallback.onFailure(e);
-                        requestCallback.onFinish();
+                        requestCallback.onEnd();
                     }
                 });
 
@@ -96,7 +96,7 @@ public class OkHttpImpl implements IHttpInterface {
                             @Override
                             public void run() {
                                 requestCallback.onSuccess(json);
-                                requestCallback.onFinish();
+                                requestCallback.onEnd();
                             }
                         });
                     } catch (IOException e) {
@@ -108,7 +108,7 @@ public class OkHttpImpl implements IHttpInterface {
                         @Override
                         public void run() {
                             requestCallback.onFailure(new IOException(response.message() + ",url=" + call.request().url().toString()));
-                            requestCallback.onFinish();
+                            requestCallback.onEnd();
                         }
                     });
 
