@@ -38,7 +38,7 @@ public class OkHttpImpl implements IHttpInterface {
                 .readTimeout(10, TimeUnit.SECONDS)
                 .build();
         //在哪个线程创建该对象，则最后的请求结果将在该线程回调
-        handler = new Handler();
+        handler = new Handler(appContext.getMainLooper());
     }
 
     private static class SingletonHolder {
