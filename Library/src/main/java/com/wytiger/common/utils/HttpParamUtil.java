@@ -10,18 +10,18 @@ import java.util.Map;
 
 public class HttpParamUtil {
     /**
-     * 请求参数应该是 name1=value1&name2=value2
+     * 将请求参数map转换为name1=value1&name2=value2形式
      * @param params
      * @return
      */
     public static String getKeyValue(Map<String, Object> params) {
-
         if(params == null){
             return "";
         }
 
         try {
             StringBuilder builder = new StringBuilder();
+            builder.append("?");
             if (params != null) {
                 Iterator<String> iterator = params.keySet().iterator();
                 while (iterator.hasNext()) {
@@ -41,14 +41,16 @@ public class HttpParamUtil {
         }
         return "";
     }
+
     /**
-     * 请求参数应该是 name1=value1&name2=value2
+     * 将请求参数map转换为name1=value1&name2=value2形式
      * @param params
      * @return
      */
-    public static String getKeyValuePost(Map<String, Object> params) {
+    public static String getKeyValueURLEncode(Map<String, Object> params) {
         try {
             StringBuilder builder = new StringBuilder();
+            builder.append("?");
             if (params != null) {
                 Iterator<String> iterator = params.keySet().iterator();
                 while (iterator.hasNext()) {

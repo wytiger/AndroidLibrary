@@ -3,7 +3,7 @@ package com.wytiger.common.http.interfaces;
 import java.util.Map;
 
 /**
- * description:
+ * description: get  post请求接口定义
  * Created by wytiger on 2016-12-22.
  */
 

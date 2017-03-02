@@ -1,17 +1,19 @@
 package com.wytiger.common.http.impl;
 
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import com.wytiger.common.http.interfaces.IHttpCallback;
 import com.wytiger.common.http.interfaces.IHttpInterface;
-import com.wytiger.common.utils.HttpParamUtil;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -19,7 +21,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * description:
+ * description:OkHttp实现get  post请求
  * Created by wytiger on 2016-12-22.
  */
 
@@ -48,8 +50,8 @@ public class OkHttpImpl implements IHttpInterface {
 
     @Override
     public void get(String baseUrl, Map<String, Object> params, final IHttpCallback httpCallback) {
-       httpCallback. onStart();
-        String url = baseUrl+ HttpParamUtil.getKeyValue(params);
+        httpCallback.onStart();
+        String url = baseUrl + getKeyValue(params);
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -59,8 +61,8 @@ public class OkHttpImpl implements IHttpInterface {
 
     @Override
     public void post(String baseUrl, Map<String, Object> params, IHttpCallback httpCallback) {
-        httpCallback. onStart();
-        RequestBody body = RequestBody.create(TYPE_JSON, params.toString());
+        httpCallback.onStart();
+        RequestBody body = createRequestBody(params);
         Request request = new Request.Builder()
                 .url(baseUrl)
                 .post(body)
@@ -108,4 +110,49 @@ public class OkHttpImpl implements IHttpInterface {
             }
         });
     }
+
+    /**
+     * 将请求参数map转换为name1=value1&name2=value2形式
+     * @param params
+     * @return
+     */
+    public static String getKeyValue(Map<String, Object> params) {
+        if(params == null){
+            return "";
+        }
+        try {
+            StringBuilder builder = new StringBuilder();
+            builder.append("?");
+            if (params != null) {
+                Iterator<String> iterator = params.keySet().iterator();
+                while (iterator.hasNext()) {
+                    final String key = iterator.next();
+                    builder.append(key);
+                    builder.append("=");
+                    builder.append(params.get(key));
+                    builder.append("&");
+                }
+                if (params.keySet().size() > 0) {
+                    builder.deleteCharAt(builder.length() - 1);
+                }
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    @NonNull
+    private static RequestBody createRequestBody(Map<String, Object> params) {
+        FormBody.Builder builder = new FormBody.Builder();
+        if (null != params) {
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
+                builder.add(entry.getKey(), entry.getValue().toString());
+            }
+        }
+        return builder.build();
+    }
+
+
 }
