@@ -37,6 +37,7 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
                     public void onStart() {
                         super.onStart();
                         ToastUtil.show(HttpDemoActivity.this, "begin");
+                        LogUtil.i(Thread.currentThread().getName() + ": onStart");
                     }
 
                     @Override
@@ -53,6 +54,7 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
                     public void onFinish() {
                         super.onFinish();
                         ToastUtil.show(HttpDemoActivity.this, "finish");
+                        LogUtil.i(Thread.currentThread().getName() + ": onFinish");
                     }
                 });
                 break;
