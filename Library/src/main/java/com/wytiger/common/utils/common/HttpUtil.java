@@ -143,8 +143,7 @@ public class HttpUtil {
 		try {
 			URL realUrl = new URL(url);
 			// 打开和URL之间的连接
-			HttpURLConnection conn = (HttpURLConnection) realUrl
-					.openConnection();
+			HttpURLConnection conn = (HttpURLConnection) realUrl.openConnection();
 			// 设置通用的请求属性
 			conn.setRequestProperty("accept", "*/*");
 			conn.setRequestProperty("connection", "Keep-Alive");

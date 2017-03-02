@@ -2,7 +2,7 @@ package com.wytiger.common.utils;
 
 import org.json.JSONArray;
 
-public class JSONUtil {
+public class JsonConvertUtil {
 
 	/**
 	 * JSON字符串特殊字符处理, 当文本中含有如下特殊字符时，此方法可以成功处理，让其在前台被正确解析，注意：此法不能处理单引号 1：引号

@@ -2,7 +2,7 @@ package com.wytiger.common.http2;
 
 import com.wytiger.common.http2.response.AppResponse;
 import com.wytiger.common.http2.response.BaseResponse;
-import com.wytiger.common.utils.JsonUtils;
+import com.wytiger.common.utils.FastJsonUtil;
 
 import java.io.File;
 import java.util.HashMap;
@@ -87,7 +87,7 @@ public class AppHttpClient {
 
         @Override
         public HashMap<String, Object> call(AppResponse response) {
-            return JsonUtils.fromJson2ObjectHashMap(response.getData());
+            return FastJsonUtil.fromJson2ObjectHashMap(response.getData());
         }
     }
 }

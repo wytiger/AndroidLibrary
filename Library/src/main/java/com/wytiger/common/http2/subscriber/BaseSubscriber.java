@@ -6,8 +6,8 @@ import com.wytiger.common.http2.exception.AppEmptyDataException;
 import com.wytiger.common.http2.exception.AppHttpException;
 import com.wytiger.common.http2.exception.WalletAccountLockedException;
 import com.wytiger.common.http2.exception.WalletLoginAtOtherPlaceException;
-import com.wytiger.common.utils.NetUtils;
 import com.wytiger.common.utils.common.LogUtil;
+import com.wytiger.common.utils.common.NetUtil;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -130,7 +130,7 @@ public abstract class BaseSubscriber<T> extends Subscriber<T> {
 
     private void handleConnectException(Throwable e) {
         Observable.create(subscriber -> {
-             boolean result = NetUtils.ping();
+             boolean result = NetUtil.ping();
             if (result) {
                 subscriber.onNext(result);
                 subscriber.onCompleted();

@@ -6,8 +6,8 @@ import com.wytiger.common.http2.AppHttpUtil;
 import com.wytiger.common.http2.IAppService;
 import com.wytiger.common.http2.params.BaseParams;
 import com.wytiger.common.http2.params.RiskParams;
-import com.wytiger.common.utils.NetUtils;
 import com.wytiger.common.utils.common.LogUtil;
+import com.wytiger.common.utils.common.NetUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class AppInterceptor implements Interceptor {
             //网络请求数据
 
             //判断当前网络情形，如果没有网络，不发送网络请求
-            if (!NetUtils.isConnected(AppApplication.getInstance())) {
+            if (!NetUtil.isConnected(AppApplication.getInstance())) {
                 return AppHttpUtil.buildNoNetworkResponse(originalRequest);
             }
 

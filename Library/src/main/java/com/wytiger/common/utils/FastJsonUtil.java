@@ -10,13 +10,13 @@ import java.util.List;
 /**
  * Author: wujiejiang
  * Time: 2016/5/19
- * Desc:
+ * Desc:fastjson转换类
  */
-public class JsonUtils {
+public class FastJsonUtil {
     /**
      * 隐藏默认的构造方法
      */
-    private JsonUtils() {
+    private FastJsonUtil() {
 
     }
 

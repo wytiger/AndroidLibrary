@@ -7,7 +7,7 @@ import com.wytiger.common.R;
 import com.wytiger.common.constants.AppConstants;
 import com.wytiger.common.gloable.AppApplication;
 import com.wytiger.common.http2.response.BaseResponse;
-import com.wytiger.common.utils.JsonUtils;
+import com.wytiger.common.utils.FastJsonUtil;
 import com.wytiger.common.utils.common.LogUtil;
 
 import java.io.File;
@@ -34,7 +34,7 @@ public class AppHttpUtil {
         Response.Builder builder = new Response.Builder();
 
         MediaType mediaType = MediaType.parse(MEDIA_TYPE_JSON);
-        String content = JsonUtils.toJson(customerResponse);
+        String content = FastJsonUtil.toJson(customerResponse);
         ResponseBody responseBody = ResponseBody.create(mediaType, content);
         builder.body(responseBody);
 
