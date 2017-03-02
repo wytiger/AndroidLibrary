@@ -1,6 +1,6 @@
 package com.wytiger.common.utils.storage;
 
-import com.wytiger.common.utils.common.SP;
+import com.wytiger.common.utils.common.SharedUtil;
 
 import android.content.Context;
 
@@ -17,13 +17,13 @@ public class CacheUtil {
 	 */
 	public static void setCache(String key, String value, Context ctx) {
 		//可以将缓存放在文件中, 文件名url, 文件内容是str
-		SP.setPrefString(ctx, key, value);
+		SharedUtil.setPrefString(ctx, key, value);
 	}
 
 	/**
 	 * 获取缓存, key是url
 	 */
 	public static String getCache(String key, Context ctx) {
-		return SP.getPrefString(ctx, key, null);
+		return SharedUtil.getPrefString(ctx, key, null);
 	}
 }

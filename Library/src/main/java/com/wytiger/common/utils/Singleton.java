@@ -1,7 +1,7 @@
 package com.wytiger.common.utils;
 
 /**
- * 单例模式: T 为类, P为传参
+ * 单例模式: ToastUtil 为类, P为传参
  * Created by Kelvin on 15/9/12.
  */
 public abstract class Singleton<T, P> {

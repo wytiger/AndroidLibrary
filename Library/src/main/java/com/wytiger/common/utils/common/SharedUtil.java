@@ -13,8 +13,8 @@ import android.preference.PreferenceManager;
 /**
  * Created by wytiger on 15/9/12.
  */
-public class SP {
-	public SP() {
+public class SharedUtil {
+	public SharedUtil() {
 		/* cannot be instantiated */
 		throw new UnsupportedOperationException("cannot be instantiated");
 	}
