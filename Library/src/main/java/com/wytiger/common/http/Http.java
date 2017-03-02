@@ -11,9 +11,9 @@ import com.wytiger.common.http.interfaces.IHttpInterface;
  */
 
 public class Http {
-    public static IHttpInterface getHttp(Context appContext) {
-//        return VolleyImpl.getInstance(appContext.getApplicationContext());
-        return OkHttpImpl.getInstance();
+    public static IHttpInterface getHttp(Context context) {
+//        return VolleyImpl.getInstance(context.getApplicationContext());
+        return OkHttpImpl.getInstance(context.getApplicationContext());
     }
 
 }

@@ -1,5 +1,6 @@
 package com.wytiger.common.http.impl;
 
+import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
@@ -27,6 +28,7 @@ import okhttp3.Response;
 
 public class OkHttpImpl implements IHttpInterface {
     public static final MediaType TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
+    private static Context appContext;
     private OkHttpClient okHttpClient;
     private Handler handler;
 
@@ -43,7 +45,8 @@ public class OkHttpImpl implements IHttpInterface {
         private static final OkHttpImpl INSTANCE = new OkHttpImpl();
     }
 
-    public static OkHttpImpl getInstance() {
+    public static OkHttpImpl getInstance(Context context) {
+        appContext = context.getApplicationContext();
         return SingletonHolder.INSTANCE;
     }
 
@@ -116,11 +119,12 @@ public class OkHttpImpl implements IHttpInterface {
 
     /**
      * 将请求参数map转换为name1=value1&name2=value2形式
+     *
      * @param params
      * @return
      */
     public static String getKeyValue(Map<String, Object> params) {
-        if(params == null){
+        if (params == null) {
             return "";
         }
         try {

@@ -41,12 +41,12 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
 
                     @Override
                     public void onSuccess(String response) {
-                        LogUtil.i(response);
+                        LogUtil.i(Thread.currentThread().getName() + ": " + response);
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        LogUtil.i(e.getMessage());
+                        LogUtil.i(Thread.currentThread().getName() + ": " + e.getMessage());
                     }
 
                     @Override
@@ -57,8 +57,8 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
                 });
                 break;
             case R.id.button2:
-                Map<String,Object> map = new HashMap<>();
-                map.put("citykey","101010100");
+                Map<String, Object> map = new HashMap<>();
+                map.put("citykey", "101010100");
                 Http.getHttp(this).get(url2, map, new HttpCallback() {
                     @Override
                     public void onStart() {
@@ -68,13 +68,14 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
 
                     @Override
                     public void onSuccess(String response) {
-                        LogUtil.i(response);
+                        LogUtil.i(Thread.currentThread().getName() + ": " + response);
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        LogUtil.i(e.getMessage());
+                        LogUtil.i(Thread.currentThread().getName() + ": " + e.getMessage());
                     }
+
                     @Override
                     public void onFinish() {
                         super.onFinish();
@@ -86,27 +87,27 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
                 Http.getHttp(this).get(url, null, new HttpCallback() {
                     @Override
                     public void onSuccess(String response) {
-                        LogUtil.i(response);
+                        LogUtil.i(Thread.currentThread().getName() + ": " + response);
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        LogUtil.i(e.getMessage());
+                        LogUtil.i(Thread.currentThread().getName() + ": " + e.getMessage());
                     }
                 });
                 break;
             case R.id.button4:
-                Map<String,Object> map2 = new HashMap<>();
-                map2.put("citykey","101010100");
+                Map<String, Object> map2 = new HashMap<>();
+                map2.put("citykey", "101010100");
                 Http.getHttp(this).get(url2, map2, new HttpCallback() {
                     @Override
                     public void onSuccess(String response) {
-                        LogUtil.i(response);
+                        LogUtil.i(Thread.currentThread().getName() + ": " + response);
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        LogUtil.i(e.getMessage());
+                        LogUtil.i(Thread.currentThread().getName() + ": " + e.getMessage());
                     }
                 });
                 break;
