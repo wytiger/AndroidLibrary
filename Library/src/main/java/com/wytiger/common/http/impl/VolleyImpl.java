@@ -2,7 +2,6 @@ package com.wytiger.common.http.impl;
 
 import android.content.Context;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,9 +12,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.wytiger.common.http.interfaces.IHttpCallback;
 import com.wytiger.common.http.interfaces.IHttpInterface;
+import com.wytiger.common.utils.HttpParamUtil;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -39,6 +38,7 @@ public class VolleyImpl implements IHttpInterface {
     @Override
     public void get(String baseUrl, final Map<String, Object> params, final IHttpCallback requestCallback) {
         requestCallback.onStart();
+        String url = baseUrl + HttpParamUtil.getKeyValue(params);
         //响应监听器
         Response.Listener<String> listener = new Response.Listener<String>() {
             @Override
@@ -56,7 +56,7 @@ public class VolleyImpl implements IHttpInterface {
             }
         };
         //String请求
-        StringRequest request = new StringRequest(Request.Method.GET, baseUrl, listener, errorListener) {
+        StringRequest request = new StringRequest(Request.Method.GET, url, listener, errorListener) {
             @Override
             protected Response<String> parseNetworkResponse(NetworkResponse response) {
                 String str = null;
@@ -68,16 +68,17 @@ public class VolleyImpl implements IHttpInterface {
                 return Response.success(str, HttpHeaderParser.parseCacheHeaders(response));
             }
 
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<String, String>();
-                if (null != params) {
-                    for (Map.Entry<String, Object> entry : params.entrySet()) {
-                        map.put(entry.getKey(), entry.getValue().toString());
-                    }
-                }
-                return map;
-            }
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//
+//                Map<String, String> map = new HashMap<String, String>();
+//                if (null != params) {
+//                    for (Map.Entry<String, Object> entry : params.entrySet()) {
+//                        map.put(entry.getKey(), entry.getValue().toString());
+//                    }
+//                }
+//                return map;
+//            }
         };
         //加入请求队列
         mQueue.add(request);
@@ -86,6 +87,7 @@ public class VolleyImpl implements IHttpInterface {
     @Override
     public void post(String baseUrl, final Map<String, Object> params, final IHttpCallback requestCallback) {
         requestCallback.onStart();
+        String url = baseUrl + HttpParamUtil.getKeyValue(params);
         //响应监听器
         Response.Listener<String> listener = new Response.Listener<String>() {
             @Override
@@ -103,7 +105,7 @@ public class VolleyImpl implements IHttpInterface {
             }
         };
         //String请求
-        StringRequest request = new StringRequest(Request.Method.POST, baseUrl, listener, errorListener) {
+        StringRequest request = new StringRequest(Request.Method.POST, url, listener, errorListener) {
             @Override
             protected Response<String> parseNetworkResponse(NetworkResponse response) {
                 String str = null;
@@ -115,17 +117,17 @@ public class VolleyImpl implements IHttpInterface {
                 return Response.success(str, HttpHeaderParser.parseCacheHeaders(response));
             }
 
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                Map<String, String> map = new HashMap<String, String>();
-                if (null != params) {
-                    for (Map.Entry<String, Object> entry : params.entrySet()) {
-                        map.put(entry.getKey(), entry.getValue().toString());
-                    }
-                }
-                return map;
-            }
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//
+//                Map<String, String> map = new HashMap<String, String>();
+//                if (null != params) {
+//                    for (Map.Entry<String, Object> entry : params.entrySet()) {
+//                        map.put(entry.getKey(), entry.getValue().toString());
+//                    }
+//                }
+//                return map;
+//            }
         };
         //加入请求队列
         mQueue.add(request);

@@ -7,7 +7,6 @@ import android.view.View;
 import com.wytiger.common.http.Http;
 import com.wytiger.common.http.interfaces.HttpCallback;
 import com.wytiger.common.utils.common.LogUtil;
-import com.wytiger.common.utils.common.ToastUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,12 +57,12 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.button2:
                 Map<String, Object> map = new HashMap<>();
-                map.put("citykey", "101010100");
+                map.put("citykey", "101210101");
                 Http.getHttp(this).get(url2, map, new HttpCallback() {
                     @Override
                     public void onStart() {
                         super.onStart();
-                        ToastUtil.show(HttpDemoActivity.this, "begin");
+                        LogUtil.i(Thread.currentThread().getName() + ": onStart");
                     }
 
                     @Override
@@ -79,12 +78,12 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
                     @Override
                     public void onFinish() {
                         super.onFinish();
-                        ToastUtil.show(HttpDemoActivity.this, "finish");
+                        LogUtil.i(Thread.currentThread().getName() + ": onFinish");
                     }
                 });
                 break;
             case R.id.button3:
-                Http.getHttp(this).get(url, null, new HttpCallback() {
+                Http.getHttp(this).post(url, null, new HttpCallback() {
                     @Override
                     public void onSuccess(String response) {
                         LogUtil.i(Thread.currentThread().getName() + ": " + response);
@@ -98,8 +97,8 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.button4:
                 Map<String, Object> map2 = new HashMap<>();
-                map2.put("citykey", "101010100");
-                Http.getHttp(this).get(url2, map2, new HttpCallback() {
+                map2.put("citykey", "101210101");
+                Http.getHttp(this).post(url2, map2, new HttpCallback() {
                     @Override
                     public void onSuccess(String response) {
                         LogUtil.i(Thread.currentThread().getName() + ": " + response);
