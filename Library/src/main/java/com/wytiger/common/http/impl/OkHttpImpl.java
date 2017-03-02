@@ -4,8 +4,10 @@ import android.os.Handler;
 
 import com.wytiger.common.http.interfaces.IHttpCallback;
 import com.wytiger.common.http.interfaces.IHttpInterface;
+import com.wytiger.common.utils.HttpParamUtil;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -45,8 +47,9 @@ public class OkHttpImpl implements IHttpInterface {
 
 
     @Override
-    public void get(String url, final IHttpCallback httpCallback) {
+    public void get(String baseUrl, Map<String, Object> params, final IHttpCallback httpCallback) {
        httpCallback. onStart();
+        String url = baseUrl+ HttpParamUtil.getKeyValue(params);
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -55,11 +58,11 @@ public class OkHttpImpl implements IHttpInterface {
     }
 
     @Override
-    public void post(String url, String requestBody, IHttpCallback httpCallback) {
+    public void post(String baseUrl, Map<String, Object> params, IHttpCallback httpCallback) {
         httpCallback. onStart();
-        RequestBody body = RequestBody.create(TYPE_JSON, requestBody);
+        RequestBody body = RequestBody.create(TYPE_JSON, params.toString());
         Request request = new Request.Builder()
-                .url(url)
+                .url(baseUrl)
                 .post(body)
                 .build();
         addCallBack(httpCallback, request);

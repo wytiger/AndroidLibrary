@@ -12,9 +12,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.wytiger.common.http.interfaces.IHttpCallback;
 import com.wytiger.common.http.interfaces.IHttpInterface;
+import com.wytiger.common.utils.HttpParamUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Map;
 
 /**
  * description:
@@ -35,8 +38,9 @@ public class VolleyImpl implements IHttpInterface {
     }
 
     @Override
-    public void get(String url, final IHttpCallback requestCallback) {
+    public void get(String baseUrl, Map<String, Object> params, final IHttpCallback requestCallback) {
         requestCallback. onStart();
+        String url = baseUrl+ HttpParamUtil.getKeyValue(params);
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -56,9 +60,9 @@ public class VolleyImpl implements IHttpInterface {
     }
 
     @Override
-    public void post(String url, String requestBodyJson, final IHttpCallback requestCallback) {
+    public void post(String url,  Map<String, Object> params, final IHttpCallback requestCallback) {
         requestCallback. onStart();
-        requestWithBody(url, requestBodyJson, requestCallback, Request.Method.POST);
+        requestWithBody(url, params.toString(), requestCallback, Request.Method.POST);
     }
 
 
