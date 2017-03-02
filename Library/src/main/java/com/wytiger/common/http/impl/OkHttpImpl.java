@@ -91,6 +91,7 @@ public class OkHttpImpl implements IHttpInterface {
             public void onResponse(final Call call, final Response response) throws IOException {
                 if (response.isSuccessful()) {
                     try {
+                        //这一句是耗时操作，仍然需要在子线程执行
                         final String json = response.body().string();
                         handler.post(new Runnable() {
                             @Override
