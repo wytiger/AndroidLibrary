@@ -1,4 +1,4 @@
-package com.wytiger.common.imageloader.loader;
+package com.wytiger.common.imageloader.impl;
 
 
 
