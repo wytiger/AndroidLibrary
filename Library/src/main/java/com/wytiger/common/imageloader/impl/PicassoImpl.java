@@ -18,15 +18,15 @@ import java.io.File;
  * description:
  * Created by wytiger on 2017-2-5.
  */
-public class PicassoImageLoader implements IImageInterface {
+public class PicassoImpl implements IImageInterface {
 
 
     private static class SingletonHolder {
-        private static final PicassoImageLoader INSTANCE = new PicassoImageLoader();
+        private static final PicassoImpl INSTANCE = new PicassoImpl();
     }
 
     public static IImageInterface getInstance() {
-        return PicassoImageLoader.SingletonHolder.INSTANCE;
+        return PicassoImpl.SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -72,4 +72,12 @@ public class PicassoImageLoader implements IImageInterface {
                 .into(imageView);
     }
 
+    @Override
+    public void displayImage(Context context, ImageView imageView, String url, int placeholderResId, int errorResId) {
+        Picasso.with(context)
+                .load(url)
+                .placeholder(placeholderResId)
+                .error(errorResId)
+                .into(imageView);
+    }
 }

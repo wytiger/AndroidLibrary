@@ -1,10 +1,10 @@
-package com.wytiger.common.imageloader;
+package com.wytiger.common.imageloader2;
 
-import com.wytiger.common.imageloader.impl.GlideImpl;
+import com.wytiger.common.imageloader2.impl.GlideImpl;
 
 /**
- * description:策略模式封装图片加载框架
- * Created by wytiger on 2017-2-5.
+ * Created by tiger
+ * 2017/3/3.
  */
 
 public class ImageLoader {
@@ -13,5 +13,6 @@ public class ImageLoader {
 //        return PicassoImpl.getInstance();
         return GlideImpl.getInstance();
     }
+
 
 }

@@ -17,13 +17,13 @@ import java.io.File;
  * description:
  * Created by wytiger on 2017-2-5.
  */
-public class GlideImageLoader implements IImageInterface {
+public class GlideImpl implements IImageInterface {
     private static class SingletonHolder {
-        private static final GlideImageLoader INSTANCE = new GlideImageLoader();
+        private static final GlideImpl INSTANCE = new GlideImpl();
     }
 
     public static IImageInterface getInstance() {
-        return GlideImageLoader.SingletonHolder.INSTANCE;
+        return GlideImpl.SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -65,6 +65,15 @@ public class GlideImageLoader implements IImageInterface {
     public void displayImage(Fragment fragment, ImageView imageView, String url) {
         Glide.with(fragment)
                 .load(url)
+                .into(imageView);
+    }
+
+    @Override
+    public void displayImage(Context context, ImageView imageView, String url, int placeholderResId, int errorResId) {
+        Glide.with(context)
+                .load(url)
+                .placeholder(placeholderResId)
+                .error(errorResId)
                 .into(imageView);
     }
 
