@@ -1,9 +1,9 @@
 package com.wytiger.common.keeplive;
 
-import com.wytiger.common.utils.common.LogUtil;
-
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.wytiger.common.utils.common.LogUtil;
 
 /**
  * 透明1像素activity，在清单文件注册

@@ -1,10 +1,10 @@
 package com.wytiger.common.keeplive;
 
-import com.wytiger.common.utils.common.LogUtil;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.wytiger.common.utils.common.LogUtil;
 
 
 /**
