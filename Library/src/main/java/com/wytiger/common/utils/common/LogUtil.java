@@ -3,7 +3,6 @@ package com.wytiger.common.utils.common;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.wytiger.common.BuildConfig;
 import com.wytiger.common.utils.storage.StorageUtil;
 
 import java.io.File;
@@ -20,44 +19,44 @@ import java.util.Date;
  */
 public class LogUtil {
     private static boolean NEED_WRITE_LOG_FLAG = true;
-
+    private static boolean DEBUG = true;
     private LogUtil() {
         /* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    private static final String TAG = "wytiger";
+    private static final String TAG = "com.tps.shop";
 
     public static void v(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             msg = createLog(msg);
             Log.v(TAG, msg);
         }
     }
 
     public static void i(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             msg = createLog(msg);
             Log.i(TAG, msg);
         }
     }
 
     public static void d(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             msg = createLog(msg);
             Log.d(TAG, msg);
         }
     }
 
     public static void w(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             msg = createLog(msg);
             Log.w(TAG, msg);
         }
     }
 
     public static void e(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             msg = createLog(msg);
             Log.e(TAG, msg);
         }
@@ -69,35 +68,35 @@ public class LogUtil {
 
     // 下面是传入自定义tag的函数
     public static void v(String tag, String msg) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             msg = createLog(msg);
             Log.v(tag, msg);
         }
     }
 
     public static void i(String tag, String msg) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             msg = createLog(msg);
             Log.i(tag, msg);
         }
     }
 
     public static void d(String tag, String msg) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             msg = createLog(msg);
             Log.d(tag, msg);
         }
     }
 
     public static void w(String tag, String msg) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             msg = createLog(msg);
             Log.w(tag, msg);
         }
     }
 
     public static void e(String tag, String msg) {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             msg = createLog(msg);
             Log.e(tag, msg);
         }

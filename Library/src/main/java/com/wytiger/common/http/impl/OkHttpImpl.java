@@ -34,8 +34,9 @@ public class OkHttpImpl implements IHttpInterface {
 
     private OkHttpImpl() {
         okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
                 .build();
         //在哪个线程创建该对象，则最后的请求结果将在该线程回调
         handler = new Handler(appContext.getMainLooper());
@@ -103,12 +104,11 @@ public class OkHttpImpl implements IHttpInterface {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    ;
                 } else {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            requestCallback.onFailure(new IOException(response.message() + ",url=" + call.request().url().toString()));
+                            requestCallback.onFailure(new Exception(response.message()));
                             requestCallback.onEnd();
                         }
                     });

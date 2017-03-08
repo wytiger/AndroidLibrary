@@ -29,9 +29,10 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Log.i("HttpDemoActivity","onClick");
-        Log.i("HttpDemoActivity","DEBUG = " + com.wytiger.common.BuildConfig.DEBUG);
-        LogUtil.i("HttpDemoActivity","onClick2");
+        Log.i("Log","onClick");
+        LogUtil.i("LogUtil","onClick2");
+        Log.i("HttpDemoActivity","com.wytiger.common.BuildConfig. = " + com.wytiger.common.BuildConfig.DEBUG);
+        Log.i("HttpDemoActivity","com.wytiger.mytest.BuildConfig.DEBUG = " + com.wytiger.mytest.BuildConfig.DEBUG);
         switch (v.getId()) {
             case R.id.button:
                 Http.getHttp(this).get(url, null, new HttpCallback() {
