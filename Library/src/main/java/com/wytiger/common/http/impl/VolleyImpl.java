@@ -12,9 +12,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.wytiger.common.http.interfaces.IHttpCallback;
 import com.wytiger.common.http.interfaces.IHttpInterface;
-import com.wytiger.common.utils.HttpParamUtil;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -38,7 +38,7 @@ public class VolleyImpl implements IHttpInterface {
     @Override
     public void get(String baseUrl, final Map<String, Object> params, final IHttpCallback requestCallback) {
         requestCallback.onStart();
-        String url = baseUrl + HttpParamUtil.getKeyValue(params);
+        String url = baseUrl + getKeyValue(params);
         //响应监听器
         Response.Listener<String> listener = new Response.Listener<String>() {
             @Override
@@ -87,7 +87,7 @@ public class VolleyImpl implements IHttpInterface {
     @Override
     public void post(String baseUrl, final Map<String, Object> params, final IHttpCallback requestCallback) {
         requestCallback.onStart();
-        String url = baseUrl + HttpParamUtil.getKeyValue(params);
+        String url = baseUrl + getKeyValue(params);
         //响应监听器
         Response.Listener<String> listener = new Response.Listener<String>() {
             @Override
@@ -133,5 +133,37 @@ public class VolleyImpl implements IHttpInterface {
         mQueue.add(request);
     }
 
+    /**
+     * 将请求参数map转换为name1=value1&name2=value2形式
+     *
+     * @param params
+     * @return
+     */
+    public static String getKeyValue(Map<String, Object> params) {
+        if (params == null) {
+            return "";
+        }
+        try {
+            StringBuilder builder = new StringBuilder();
+            builder.append("?");
+            if (params != null) {
+                Iterator<String> iterator = params.keySet().iterator();
+                while (iterator.hasNext()) {
+                    final String key = iterator.next();
+                    builder.append(key);
+                    builder.append("=");
+                    builder.append(params.get(key));
+                    builder.append("&");
+                }
+                if (params.keySet().size() > 0) {
+                    builder.deleteCharAt(builder.length() - 1);
+                }
+            }
+            return builder.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
 }
