@@ -2,10 +2,12 @@ package com.wytiger.mytest;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import com.wytiger.common.utils.common.LogUtil;
+
 import com.wytiger.common.http.Http;
 import com.wytiger.common.http.interfaces.HttpCallback;
+import com.wytiger.common.utils.common.LogUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,13 +24,14 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.button).setOnClickListener(this);
         findViewById(R.id.button2).setOnClickListener(this);
         findViewById(R.id.button3).setOnClickListener(this);
-        findViewById(R.id.button4).setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        LogUtil.i("onClick");
+        Log.i("HttpDemoActivity","onClick");
+        Log.i("HttpDemoActivity","DEBUG = " + com.wytiger.common.BuildConfig.DEBUG);
+        LogUtil.i("HttpDemoActivity","onClick2");
         switch (v.getId()) {
             case R.id.button:
                 Http.getHttp(this).get(url, null, new HttpCallback() {
@@ -82,20 +85,8 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
                     }
                 });
                 break;
-            case R.id.button3:
-                Http.getHttp(this).post(url, null, new HttpCallback() {
-                    @Override
-                    public void onSuccess(String response) {
-                        LogUtil.i(Thread.currentThread().getName() + ": " + response);
-                    }
 
-                    @Override
-                    public void onFailure(Throwable e) {
-                        LogUtil.i(Thread.currentThread().getName() + ": " + e.getMessage());
-                    }
-                });
-                break;
-            case R.id.button4:
+            case R.id.button3:
                 Map<String, Object> map2 = new HashMap<>();
                 map2.put("citykey", "101210101");
                 Http.getHttp(this).post(url2, map2, new HttpCallback() {
