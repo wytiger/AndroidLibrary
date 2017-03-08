@@ -120,7 +120,7 @@ public class VolleyImpl implements IHttpInterface {
 //            @Override
 //            protected Map<String, String> getParams() throws AuthFailureError {
 //
-//                Map<String, String> map = new HashMap<String, String>();
+//                Map<String, String> map = new HashMap<>();
 //                if (null != params) {
 //                    for (Map.Entry<String, Object> entry : params.entrySet()) {
 //                        map.put(entry.getKey(), entry.getValue().toString());
