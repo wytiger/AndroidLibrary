@@ -1,21 +1,20 @@
 package com.wytiger.common.manager;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
-
 import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Process;
 
-public class AppManager {
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+
+public class AppActivityManager {
 	private  static List<Activity> activitys = new LinkedList<Activity>();
 	private  static List<Service> services = new LinkedList<Service>();
 	
-	private  AppManager() {
+	private AppActivityManager() {
 		//不能实例化
 	}
 	

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.wytiger.common.utils.common.LogUtil;
 import com.wytiger.common.utils.encryp.AESUtil;
 
 import java.util.Arrays;

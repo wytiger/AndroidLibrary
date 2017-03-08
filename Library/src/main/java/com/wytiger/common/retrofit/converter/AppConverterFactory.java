@@ -11,7 +11,6 @@ import com.wytiger.common.retrofit.response.AppResponse;
 import com.wytiger.common.retrofit.response.BaseResponse;
 import com.wytiger.common.retrofit.response.FileResponse;
 import com.wytiger.common.utils.JsonFormatUtil;
-import com.wytiger.common.utils.common.LogUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;

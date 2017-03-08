@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.wytiger.common.utils.common.FormatUtil;
+import com.wytiger.common.utils.common.TimeFormatUtil;
 
 
 import android.util.Log;
@@ -25,7 +25,7 @@ public class TimeUtil {
 	 * @return
 	 */
 	public static String handleDateTime(long time) {
-		String timedate = FormatUtil.ymdhmDate(time);
+		String timedate = TimeFormatUtil.ymdhmDate(time);
 
 		// 判断
 		if (isYesterday(timedate) == 0) {// 今天
@@ -36,7 +36,7 @@ public class TimeUtil {
 			return "昨天 ";
 		} else {// 具体哪天
 
-			return FormatUtil.mdDate(time);
+			return TimeFormatUtil.mdDate(time);
 		}
 	}
 	
@@ -66,7 +66,7 @@ public class TimeUtil {
 			return "昨天 ";
 		} else {// 具体哪天
 
-			return FormatUtil.mdDate(timedate);
+			return TimeFormatUtil.mdDate(timedate);
 		}
 	}
 

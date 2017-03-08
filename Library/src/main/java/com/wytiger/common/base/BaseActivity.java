@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.wytiger.common.manager.AppManager;
+import com.wytiger.common.manager.AppActivityManager;
 
 
 /**
@@ -22,7 +22,7 @@ public abstract class BaseActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		//设置内容视图
 		setContentView(setActivityContentView());
-		AppManager.addActivity(this);
+		AppActivityManager.addActivity(this);
 
 		initData();
 		initView();
@@ -53,7 +53,7 @@ public abstract class BaseActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		AppManager.removeActivity(this);
+		AppActivityManager.removeActivity(this);
 		dismissLoadingDialog();
 		super.onDestroy();
 	}

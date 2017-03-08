@@ -102,10 +102,10 @@ public class PopWindowHelper {
 	 * @param viewId
 	 * @param toActivity
 	 */
-	public void setOnClickItem2Activity(int itemId,
+	public void setOnClickItem2Activity(int viewId,
 			final Class<? extends Activity> toActivity) {
 
-		final View view = popView.findViewById(itemId);
+		final View view = popView.findViewById(viewId);
 		view.setOnClickListener(new View.OnClickListener() {
 
 			@Override

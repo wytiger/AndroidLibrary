@@ -7,7 +7,7 @@ import android.view.ViewGroup.LayoutParams;
 
 /**
  * 对viewPager高度进行设置
- * @author Administrator
+ * @author wytiger
  */
 public class ViewPagerUtil {
 

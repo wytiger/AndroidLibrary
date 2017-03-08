@@ -9,7 +9,7 @@ import android.view.View.OnTouchListener;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
-public class PopupWindowUtil {
+public class PopWindowUtil {
 	private static PopupWindow popupWindow;
 
 	/**

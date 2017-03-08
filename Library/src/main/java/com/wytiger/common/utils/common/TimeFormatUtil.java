@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SuppressLint("SimpleDateFormat")
-public class FormatUtil {
+public class TimeFormatUtil {
 	/**
 	 * MM-dd月日格式
 	 * 
