@@ -28,6 +28,7 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        LogUtil.i("onClick");
         switch (v.getId()) {
             case R.id.button:
                 Http.getHttp(this).get(url, null, new HttpCallback() {

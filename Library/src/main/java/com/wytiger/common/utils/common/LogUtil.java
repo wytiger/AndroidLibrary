@@ -4,7 +4,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.wytiger.common.BuildConfig;
-import com.wytiger.common.gloable.AppApplication;
 import com.wytiger.common.utils.storage.StorageUtil;
 
 import java.io.File;
@@ -15,8 +14,8 @@ import java.util.Date;
 
 
 /**
- * Created by wytiger on 2017/2/24.
  * 日志工具类。
+ * Created by wytiger on 2017/2/24.
  * 控制是否打印log信息，并添加一些额外信息以方便定位
  */
 public class LogUtil {
@@ -27,7 +26,7 @@ public class LogUtil {
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    private static final String TAG = AppApplication.getInstance().getPackageName();
+    private static final String TAG = "wytiger";
 
     public static void v(String msg) {
         if (BuildConfig.DEBUG) {
