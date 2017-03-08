@@ -31,7 +31,7 @@ public class HttpDemoActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         Log.i("Log","onClick");
         LogUtil.i("LogUtil","onClick2");
-        Log.i("HttpDemoActivity","com.wytiger.common.BuildConfig. = " + com.wytiger.common.BuildConfig.DEBUG);
+        Log.i("HttpDemoActivity","com.wytiger.common.BuildConfig.DEBUG = " + com.wytiger.common.BuildConfig.DEBUG);
         Log.i("HttpDemoActivity","com.wytiger.mytest.BuildConfig.DEBUG = " + com.wytiger.mytest.BuildConfig.DEBUG);
         switch (v.getId()) {
             case R.id.button:
