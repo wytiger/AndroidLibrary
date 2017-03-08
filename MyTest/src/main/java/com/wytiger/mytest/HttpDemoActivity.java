@@ -3,7 +3,7 @@ package com.wytiger.mytest;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-
+import com.wytiger.common.utils.common.LogUtil;
 import com.wytiger.common.http.Http;
 import com.wytiger.common.http.interfaces.HttpCallback;
 

@@ -8,7 +8,7 @@ import com.wytiger.common.constants.AppConstants;
 import com.wytiger.common.gloable.AppApplication;
 import com.wytiger.common.retrofit.response.BaseResponse;
 import com.wytiger.common.utils.FastJsonUtil;
-
+import com.wytiger.common.utils.common.LogUtil;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
