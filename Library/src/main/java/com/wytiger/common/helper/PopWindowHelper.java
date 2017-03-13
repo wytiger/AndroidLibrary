@@ -1,5 +1,6 @@
 package com.wytiger.common.helper;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -67,6 +68,7 @@ public class PopWindowHelper {
 	 * @param yoff
 	 * @param gravity
 	 */
+	@TargetApi(19)
 	public void showAsDropDown(View anchor, int xoff, int yoff, int gravity) {
 
 		popupWindow.showAsDropDown(anchor, xoff, yoff, gravity);

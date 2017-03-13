@@ -14,28 +14,28 @@ import java.util.List;
  * 存储数据管理器
  */
 
-public class StorageDataManager {
-    private String TAG = "StorageDataManager";
+public class StorageManager {
+    private String TAG = "StorageManager";
     private Context context;
 
-    private static StorageDataManager instance;
+    private static StorageManager instance;
     private String SPUserKey = "savedUsers";
 
     private String SPFileName = "share_data";
 
     private SharedPreferences sharedPref;
 
-    private StorageDataManager(Context context) {
+    private StorageManager(Context context) {
         this.context = context;
         //文件名
         sharedPref = context.getSharedPreferences(SPFileName, Context.MODE_PRIVATE);
     }
 
-    public static StorageDataManager getInstance(Context context) {
+    public static StorageManager getInstance(Context context) {
         if (instance == null) {
-            synchronized (StorageDataManager.class) {
+            synchronized (StorageManager.class) {
                 if (instance == null) {
-                    instance = new StorageDataManager(context);
+                    instance = new StorageManager(context);
                 }
             }
         }
