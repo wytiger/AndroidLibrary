@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.TextHttpResponseHandler;
-
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -18,18 +15,18 @@ public class MainActivity extends Activity implements OnClickListener {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.btnHttp).setOnClickListener(this);
-        AsyncHttpClient httpClient = new AsyncHttpClient();
-        httpClient.get("www.baidu.com", null, new TextHttpResponseHandler() {
-            @Override
-            public void onFailure(int i, org.apache.http.Header[] headers, String s, Throwable throwable) {
-
-            }
-
-            @Override
-            public void onSuccess(int i, org.apache.http.Header[] headers, String s) {
-
-            }
-        })
+//        AsyncHttpClient httpClient = new AsyncHttpClient();
+//        httpClient.get("www.baidu.com", null, new TextHttpResponseHandler() {
+//            @Override
+//            public void onFailure(int i, org.apache.http.Header[] headers, String s, Throwable throwable) {
+//
+//            }
+//
+//            @Override
+//            public void onSuccess(int i, org.apache.http.Header[] headers, String s) {
+//
+//            }
+//        });
     }
 
     @Override
