@@ -75,7 +75,7 @@ public class InputMethodUtil {
 	/**
 	 * 隐藏软键盘2
 	 * 
-	 * @param Activity
+	 * @param act
 	 */
 	public static void hideInputKeyboard(Activity act) {
 		act.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -124,7 +124,7 @@ public class InputMethodUtil {
 	/**
 	 * 显示软键盘2
 	 * 
-	 * @param Activity
+	 * @param act
 	 */
 	public static void showInputKeyboard(Activity act) {
 		act.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
