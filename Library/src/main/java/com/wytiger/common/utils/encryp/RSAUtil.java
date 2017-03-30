@@ -18,8 +18,8 @@ import javax.crypto.Cipher;
 
 /**
  * 非对称加密RSA
- * 
- * @author Administrator
+ * @author wytiger
+ * @date 2016年5月18日
  */
 public class RSAUtil {
 

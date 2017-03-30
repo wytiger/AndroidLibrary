@@ -4,6 +4,8 @@ import java.security.MessageDigest;
 
 /**
  * 单向加密MD5，不能解密，一般用于验证参数是否正确
+ * @author wytiger
+ * @date 2016年5月18日
  */
 public class MD5Util {
 	// 加密算法MD5

@@ -1,11 +1,13 @@
 package com.wytiger.common.utils.encryp;
 
-import java.io.IOException;
-
 import android.util.Base64;
+
+import java.io.IOException;
 
 /**
  * BASE64编码解码
+ * @author wytiger
+ * @date 2016年5月18日
  */
 public  class Base64Util {
 

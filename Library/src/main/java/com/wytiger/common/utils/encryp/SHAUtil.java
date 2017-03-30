@@ -13,7 +13,7 @@ public class SHAUtil {
 
 	public static String SHA1(String decript) {
 		try {
-			MessageDigest digest = java.security.MessageDigest.getInstance("SHA-1");
+			MessageDigest digest = MessageDigest.getInstance("SHA-1");
 			digest.update(decript.getBytes());
 			byte messageDigest[] = digest.digest();
 			// Create Hex String
@@ -36,7 +36,7 @@ public class SHAUtil {
 
 	public static String SHA(String decript) {
 		try {
-			MessageDigest digest = java.security.MessageDigest.getInstance("SHA");
+			MessageDigest digest = MessageDigest.getInstance("SHA");
 			digest.update(decript.getBytes());
 			byte messageDigest[] = digest.digest();
 			// Create Hex String

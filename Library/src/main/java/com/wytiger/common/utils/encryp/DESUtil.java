@@ -1,6 +1,7 @@
 package com.wytiger.common.utils.encryp;
 
 import android.annotation.SuppressLint;
+
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -13,6 +14,8 @@ import javax.crypto.spec.DESKeySpec;
 
 /**
  * 对称加密DES
+ * @author wytiger
+ * @date 2016年5月18日
  */
 public class DESUtil {
 	// 加密算法
