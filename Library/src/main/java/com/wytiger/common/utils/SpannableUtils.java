@@ -1,4 +1,4 @@
-package com.tps.shop.utils;
+package com.wytiger.common.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,6 +10,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Layout;
 import android.text.Layout.Alignment;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -52,8 +53,8 @@ public class SpannableUtils {
      * @param text 样式字符串文本
      * @return {@link Builder}
      */
-    public static Builder getBuilder(@NonNull CharSequence text) {
-        return new Builder(text);
+    public static Builder getBuilder(Context context,@NonNull CharSequence text) {
+        return new Builder(context,text);
     }
 
     public static class Builder {
@@ -90,11 +91,11 @@ public class SpannableUtils {
         private Alignment align;
 
         private boolean  imageIsBitmap;
-        private Bitmap   bitmap;
+        private Bitmap bitmap;
         private boolean  imageIsDrawable;
         private Drawable drawable;
         private boolean  imageIsUri;
-        private Uri      uri;
+        private Uri uri;
         private boolean  imageIsResourceId;
         @DrawableRes
         private int      resourceId;
@@ -107,10 +108,11 @@ public class SpannableUtils {
         private Blur    style;
 
         private SpannableStringBuilder mBuilder;
+        private Context context;
 
-
-        private Builder(@NonNull CharSequence text) {
+        private Builder(Context context, CharSequence text) {
             this.text = text;
+            this.context = context;
             flag = Spanned.SPAN_EXCLUSIVE_EXCLUSIVE;
             foregroundColor = defaultValue;
             backgroundColor = defaultValue;
@@ -316,7 +318,7 @@ public class SpannableUtils {
          *              </ul>
          * @return {@link Builder}
          */
-        public Builder setAlign(@Nullable Alignment align) {
+        public Builder setAlign(@Nullable Layout.Alignment align) {
             this.align = align;
             return this;
         }
@@ -420,8 +422,8 @@ public class SpannableUtils {
          * @param text 样式字符串文本
          * @return {@link Builder}
          */
-        public Builder append(@NonNull CharSequence text, Context context) {
-            setSpan(context);
+        public Builder append(@NonNull CharSequence text) {
+            setSpan();
             this.text = text;
             return this;
         }
@@ -431,15 +433,15 @@ public class SpannableUtils {
          *
          * @return 样式字符串
          */
-        public SpannableStringBuilder create(Context context) {
-            setSpan(context);
+        public SpannableStringBuilder create() {
+            setSpan();
             return mBuilder;
         }
 
         /**
          * 设置样式
          */
-        private void setSpan(Context context) {
+        private void setSpan() {
             int start = mBuilder.length();
             mBuilder.append(this.text);
             int end = mBuilder.length();

@@ -15,6 +15,7 @@ public class MainActivity extends Activity implements OnClickListener {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.btnHttp).setOnClickListener(this);
+        findViewById(R.id.btnSpannable).setOnClickListener(this);
 //        AsyncHttpClient httpClient = new AsyncHttpClient();
 //        httpClient.get("www.baidu.com", null, new TextHttpResponseHandler() {
 //            @Override
@@ -34,6 +35,9 @@ public class MainActivity extends Activity implements OnClickListener {
         switch (v.getId()) {
             case R.id.btnHttp:
                 startActivity(new Intent(this, HttpDemoActivity.class));
+                break;
+            case R.id.btnSpannable:
+                startActivity(new Intent(this, SpannableActivity.class));
                 break;
 
             default:
