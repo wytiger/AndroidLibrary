@@ -36,7 +36,7 @@ import static android.graphics.BlurMaskFilter.Blur;
 
 /**
  * author: Blankj
- * blog  : http://blankj.com
+ * blog  : http://www.jianshu.com/p/960467ac56c8#
  * time  : 16/12/13
  * desc  : SpannableString相关工具类
  */
