@@ -1,6 +1,7 @@
 package com.wytiger.common.base;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -91,6 +92,39 @@ public abstract class BaseActivity extends Activity {
 	protected void showLongToast(String text) {
 		Toast.makeText(this, text, Toast.LENGTH_LONG).show();
 	}
+	
+	
+		/**
+	 * replace  Fragment
+	 * @param containerViewId
+	 * @param fragment
+     */
+	protected void replaceFragment(int containerViewId, Fragment fragment) {
+		getFragmentManager().beginTransaction()
+				.replace(containerViewId, fragment)
+				.commit();
+	}
+
+	/**
+	 * switch  Fragment
+	 * @param containerViewId
+	 * @param fromFragment
+	 * @param toFragment
+     */
+	protected void switchFragment(int containerViewId, Fragment fromFragment, Fragment toFragment) {
+		if (fromFragment != toFragment) {
+			if (toFragment.isAdded()) {
+				getFragmentManager().beginTransaction()
+						.hide(fromFragment).show(toFragment).commit();
+			} else {
+				getFragmentManager().beginTransaction()
+						.hide(fromFragment).add(containerViewId, toFragment).commit();
+			}
+		}
+	}
+
+	
+	
 	/**
 	 * 启动Activity
 	 * 
