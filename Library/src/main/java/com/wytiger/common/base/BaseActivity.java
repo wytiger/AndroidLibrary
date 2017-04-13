@@ -15,7 +15,7 @@ import com.wytiger.common.manager.AppActivityManager;
  * @author wytiger
  * @date 2016年2月26日
  */
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends Activity {//
 	protected static final String TAG = BaseActivity.class.getSimpleName();
 
 	@Override
