@@ -34,14 +34,6 @@ public class AppActivityManager {
 		services.remove(service);
 	}
 
-	/**
-	 * 关闭应用。关闭所有的Activity与Service
-	 */
-	public static void closeApplication() {
-		closeActivitys();
-		closeServices();
-//		Process.killProcess(Process.myPid());
-	}
 
 	private static void closeActivitys() {
 		ListIterator<Activity> iterator = activitys.listIterator();
@@ -61,6 +53,16 @@ public class AppActivityManager {
 				service.stopSelf();
 			}
 		}
+	}
+
+
+	/**
+	 * 关闭应用。关闭所有的Activity与Service
+	 */
+	public static void closeApplication() {
+		closeActivitys();
+		closeServices();
+//		Process.killProcess(Process.myPid());
 	}
 	
 	/**
