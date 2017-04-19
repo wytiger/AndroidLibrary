@@ -69,6 +69,30 @@ public class NetUtil {
 		return true;
 	}
 
+
+	/**
+	 * 获取网络类型
+	 *
+	 * @param context
+	 * @return
+	 */
+	public static int getNetType(Context context) {
+		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (!isAvalible(context)) {
+
+			return NetUtil.IS_NO_NETWORK;
+		} else if (cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting()) {
+
+			return NetUtil.IS_WIFI;
+		} else if (cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting()) {
+
+			return NetUtil.IS_MOBILE;
+		} else {
+
+			return NetUtil.IS_UNKNOW;
+		}
+	}
+
 	/**
 	 * 判断是否是wifi连接
 	 */
@@ -141,29 +165,6 @@ public class NetUtil {
 	}
 
 	/**
-	 * 获取网络类型
-	 * 
-	 * @param context
-	 * @return
-	 */
-	@SuppressWarnings("deprecation")
-	public static int getNetType(Context context) {
-		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		if (!isAvalible(context)) {
-
-			return NetUtil.IS_NO_NETWORK;
-		} else if (cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting()) {
-
-			return NetUtil.IS_WIFI;
-		} else if (cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting()) {
-
-			return NetUtil.IS_MOBILE;
-		} else {
-
-			return NetUtil.IS_UNKNOW;
-		}
-	}
-	/**
 	 * 判断是否有外网连接（普通方法不能判断外网的网络是否连接，比如连接上局域网）
 	 * 延时非常高，不可用
 	 *
@@ -195,11 +196,11 @@ public class NetUtil {
 				result = "failed";
 			}
 		} catch (IOException e) {
-			result = "IOException";
+			result = "ping IOException";
 		} catch (InterruptedException e) {
-			result = "InterruptedException";
+			result = "ping InterruptedException";
 		} finally {
-			LogUtil.d("----result---", "result = " + result);
+			LogUtil.d("ping", "result = " + result);
 		}
 		return false;
 	}
