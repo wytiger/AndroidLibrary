@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * App工具类
- * 
+ *
  * @author wytiger
  * @date 2016.01.22
  */
@@ -39,9 +39,35 @@ public class AppUtil {
 		return null;
 	}
 
+	//版本名
+	public static String getVersionName(Context context) {
+		return getPackageInfo(context).versionName;
+	}
+
+	//版本号
+	public static int getVersionCode(Context context) {
+		return getPackageInfo(context).versionCode;
+	}
+
+	private static PackageInfo getPackageInfo(Context context) {
+		PackageInfo pi = null;
+
+		try {
+			PackageManager pm = context.getPackageManager();
+			pi = pm.getPackageInfo(context.getPackageName(),
+					PackageManager.GET_CONFIGURATIONS);
+
+			return pi;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return pi;
+	}
+
 	/**
 	 * 指定的activity所属的应用，是否是当前手机的顶级
-	 * 
+	 *
 	 * @param context
 	 *            activity界面或者application
 	 * @return 如果是，返回true；否则返回false
@@ -70,7 +96,7 @@ public class AppUtil {
 
 	/**
 	 * 判断指定activity是否是顶层activity
-	 * 
+	 *
 	 * @return
 	 */
 	@SuppressWarnings("deprecation")
@@ -85,7 +111,7 @@ public class AppUtil {
 		Log.d(TAG, "isTop =" + isTop);
 		return isTop;
 	}
-	
+
 	public static void bringActivityToFront(Activity activity) {
 		Log.i(TAG, activity.getClass().getSimpleName() + ":拉到前台");
 		activity.getWindow().addFlags(
