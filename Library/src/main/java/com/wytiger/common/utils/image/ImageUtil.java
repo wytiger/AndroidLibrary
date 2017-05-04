@@ -1,448 +1,404 @@
 package com.wytiger.common.utils.image;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.LinearGradient;
+import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
-import android.view.View;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Environment;
 
-import java.io.ByteArrayOutputStream;
+import com.wytiger.common.utils.IOUtil;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
-
-/**
- *  图片工具类
- * @author wytiger
- * @date 2016年3月25日
- */
 public class ImageUtil {
 
-	private ImageUtil() {
-		// Auto-generated constructor stub
-	}
 
-	 /**图片的八个位置**/  
-    public static final int TOP = 0;            //上   
-    public static final int BOTTOM = 1;         //下  
-    public static final int LEFT = 2;           //左  
-    public static final int RIGHT = 3;          //右  
-    public static final int LEFT_TOP = 4;       //左上  
-    public static final int LEFT_BOTTOM = 5;    //左下  
-    public static final int RIGHT_TOP = 6;      //右上  
-    public static final int RIGHT_BOTTOM = 7;   //右下  
-      
-    /** 
-     * 图像的放大缩小方法 
-     * @param src       源位图对象 
-     * @param scaleX    宽度比例系数 
-     * @param scaleY    高度比例系数 
-     * @return 返回位图对象 
-     */  
-    public static Bitmap zoomBitmap(Bitmap src, float scaleX, float scaleY) {  
-        Matrix matrix = new Matrix();  
-        matrix.setScale(scaleX, scaleY);  
-        Bitmap t_bitmap = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);  
-        return t_bitmap;  
-    }  
-      
-    /** 
-     * 图像放大缩小--根据宽度和高度 
-     * @param src 
-     * @param width 
-     * @param height 
-     * @return 
-     */  
-    public static Bitmap zoomBimtap(Bitmap src, int width, int height) {  
-        return Bitmap.createScaledBitmap(src, width, height, true);  
-    }  
-     
-    
-    /**
-	 * 将图片按照某个角度进行旋转
-	 *
-	 * @param bm
-	 *            需要旋转的图片
-	 * @param degree
-	 *            旋转角度
-	 *            
-	 * @return 旋转后的图片
-	 */
-	public static Bitmap rotateBitmapByDegree(Bitmap bm, int degree) {
-	    Bitmap returnBm = null;
-	  
-	    // 根据旋转角度，生成旋转矩阵
-	    Matrix matrix = new Matrix();
-	    matrix.postRotate(degree);
-	    try {
-	        // 将原始图片按照旋转矩阵进行旋转，并得到新的图片
-	        returnBm = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), matrix, true);
-	    } catch (OutOfMemoryError e) {
-	    }
-	    if (returnBm == null) {
-	        returnBm = bm;
-	    }
-	    if (bm != returnBm) {
-	        bm.recycle();
-	    }
-	    return returnBm;
-	}
-    
-      
-    /** 
-     * 绘制带圆角的图像 
-     * @param src 
-     * @param radius 
-     * @return 
-     */  
-    public static Bitmap createRoundedCornerBitmap(Bitmap src, int radius) {  
-        final int w = src.getWidth();  
-        final int h = src.getHeight();  
-        // 高清量32位图  
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Config.ARGB_8888);  
-        Paint paint = new Paint();  
-        Canvas canvas = new Canvas(bitmap);  
-        canvas.drawARGB(0, 0, 0, 0);  
-        paint.setColor(0xff424242);  
-        // 防止边缘的锯齿  
-        paint.setFilterBitmap(true);  
-        Rect rect = new Rect(0, 0, w, h);  
-        RectF rectf = new RectF(rect);  
-        // 绘制带圆角的矩形  
-        canvas.drawRoundRect(rectf, radius, radius, paint);  
-          
-        // 取两层绘制交集，显示上层  
-        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));  
-        // 绘制图像  
-        canvas.drawBitmap(src, rect, rect, paint);  
-        return bitmap;  
-    }  
-      
-    /** 
-     * 创建选中带提示图片 
-     * @param context 
-     * @param srcId 
-     * @param tipId 
-     * @return 
-     */  
-    public static Drawable createSelectedTip(Context context, int srcId, int tipId) {  
-        Bitmap src = BitmapFactory.decodeResource(context.getResources(), srcId);  
-        Bitmap tip = BitmapFactory.decodeResource(context.getResources(), tipId);  
-        final int w = src.getWidth();  
-        final int h = src.getHeight();  
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Config.ARGB_8888);  
-        Paint paint = new Paint();  
-        Canvas canvas = new Canvas(bitmap);  
-        //绘制原图  
-        canvas.drawBitmap(src, 0, 0, paint);  
-        //绘制提示图片  
-        canvas.drawBitmap(tip, (w - tip.getWidth()), 0, paint);  
-        return bitmap2Drawable(bitmap);  
-    }  
-      
-    /** 
-     * 带倒影的图像 
-     * @param src 
-     * @return 
-     */  
-    public static Bitmap createReflectionBitmap(Bitmap src) {  
-        // 两个图像间的空隙  
-        final int spacing = 4;  
-        final int w = src.getWidth();  
-        final int h = src.getHeight();  
-        // 绘制高质量32位图  
-        Bitmap bitmap = Bitmap.createBitmap(w, h + h / 2 + spacing, Config.ARGB_8888);  
-        // 创建燕X轴的倒影图像  
-        Matrix m = new Matrix();  
-        m.setScale(1, -1);  
-        Bitmap t_bitmap = Bitmap.createBitmap(src, 0, h / 2, w, h / 2, m, true);  
-          
-        Canvas canvas = new Canvas(bitmap);  
-        Paint paint = new Paint();  
-        //  绘制原图像  
-        canvas.drawBitmap(src, 0, 0, paint);  
-        // 绘制倒影图像  
-        canvas.drawBitmap(t_bitmap, 0, h + spacing, paint);  
-        // 线性渲染-沿Y轴高到低渲染  
-        Shader shader = new LinearGradient(0, h + spacing, 0, h + spacing + h / 2, 0x70ffffff, 0x00ffffff, Shader.TileMode.MIRROR);  
-        paint.setShader(shader);  
-        // 取两层绘制交集，显示下层。  
-        paint.setXfermode(new PorterDuffXfermode(Mode.DST_IN));  
-        // 绘制渲染倒影的矩形  
-        canvas.drawRect(0, h + spacing, w, h + h / 2 + spacing, paint);  
-        return bitmap;  
-    }  
-      
-      
-    /** 
-     * 独立的倒影图像 
-     * @param src 
-     * @return 
-     */  
-    public static Bitmap createReflectionBitmapForSingle(Bitmap src) {  
-        final int w = src.getWidth();  
-        final int h = src.getHeight();  
-        // 绘制高质量32位图  
-        Bitmap bitmap = Bitmap.createBitmap(w, h / 2, Config.ARGB_8888);  
-        // 创建沿X轴的倒影图像  
-        Matrix m = new Matrix();  
-        m.setScale(1, -1);  
-        Bitmap t_bitmap = Bitmap.createBitmap(src, 0, h / 2, w, h / 2, m, true);  
-  
-        Canvas canvas = new Canvas(bitmap);  
-        Paint paint = new Paint();  
-        // 绘制倒影图像  
-        canvas.drawBitmap(t_bitmap, 0, 0, paint);  
-        // 线性渲染-沿Y轴高到低渲染      
-        Shader shader = new LinearGradient(0, 0, 0, h / 2, 0x70ffffff,  
-                0x00ffffff, Shader.TileMode.MIRROR);  
-        paint.setShader(shader);  
-        // 取两层绘制交集。显示下层。  
-        paint.setXfermode(new PorterDuffXfermode(Mode.DST_IN));  
-        // 绘制渲染倒影的矩形  
-        canvas.drawRect(0, 0, w, h / 2, paint);  
-        return bitmap;  
-    }  
-      
-      
-    public static Bitmap createGreyBitmap(Bitmap src) {  
-        final int w = src.getWidth();  
-        final int h = src.getHeight();  
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Config.ARGB_8888);  
-        Canvas canvas = new Canvas(bitmap);  
-        Paint paint = new Paint();  
-        // 颜色变换的矩阵  
-        ColorMatrix matrix = new ColorMatrix();  
-        // saturation 饱和度值，最小可设为0，此时对应的是灰度图；为1表示饱和度不变，设置大于1，就显示过饱和  
-        matrix.setSaturation(0);  
-        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);  
-        paint.setColorFilter(filter);  
-        canvas.drawBitmap(src, 0, 0, paint);  
-        return bitmap;  
-    }  
-      
-    /** 
-     * 保存图片 
-     * @param src 
-     * @param filepath 
-     * @param format:[Bitmap.CompressFormat.PNG,Bitmap.CompressFormat.JPEG] 
-     * @return 
-     */  
-    public static boolean saveImage(Bitmap src, String filepath, CompressFormat format) {  
-        boolean rs = false;  
-        File file = new File(filepath);  
-        try {  
-            FileOutputStream out = new FileOutputStream(file);  
-            if(src.compress(format, 100, out)) {  
-                out.flush();    //写入流  
-            }  
-            out.close();  
-        } catch (FileNotFoundException e) {  
-            e.printStackTrace();  
-        } catch (IOException e) {  
-            e.printStackTrace();  
-        }  
-        return rs;  
-    }  
-      
-    /** 
-     * 添加水印效果 
-     * @param src       源位图 
-     * @param watermark 水印 
-     * @param direction 方向 
-     * @param spacing 间距 
-     * @return 
-     */  
-    public static Bitmap createWatermark(Bitmap src, Bitmap watermark, int direction, int spacing) {  
-        final int w = src.getWidth();  
-        final int h = src.getHeight();  
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Config.ARGB_8888);  
-        Canvas canvas = new Canvas(bitmap);  
-        canvas.drawBitmap(src, 0, 0, null);  
-        if(direction == LEFT_TOP) {  
-            canvas.drawBitmap(watermark, spacing, spacing, null);  
-        } else if(direction == LEFT_BOTTOM){  
-            canvas.drawBitmap(watermark, spacing, h - watermark.getHeight() - spacing, null);  
-        } else if(direction == RIGHT_TOP) {  
-            canvas.drawBitmap(watermark, w - watermark.getWidth() - spacing, spacing, null);  
-        } else if(direction == RIGHT_BOTTOM) {  
-            canvas.drawBitmap(watermark, w - watermark.getWidth() - spacing, h - watermark.getHeight() - spacing, null);  
-        }  
-        return bitmap;  
-    }  
-      
-      
-    /** 
-     * 合成图像 
-     * @param direction 
-     * @param bitmaps 
-     * @return 
-     */  
-    public static Bitmap composeBitmap(int direction, Bitmap... bitmaps) {  
-        if(bitmaps.length < 2) {  
-            return null;  
-        }  
-        Bitmap firstBitmap = bitmaps[0];  
-        for (int i = 0; i < bitmaps.length; i++) {  
-            firstBitmap = composeBitmap(firstBitmap, bitmaps[i], direction);  
-        }  
-        return firstBitmap;  
-    }  
-  
-    /** 
-     * 合成两张图像 
-     * @param firstBitmap 
-     * @param secondBitmap 
-     * @param direction 
-     * @return 
-     */  
-    private static Bitmap composeBitmap(Bitmap firstBitmap, Bitmap secondBitmap,  
-            int direction) {  
-        if(firstBitmap == null) {  
-            return null;  
-        }  
-        if(secondBitmap == null) {  
-            return firstBitmap;  
-        }  
-        final int fw = firstBitmap.getWidth();  
-        final int fh = firstBitmap.getHeight();  
-        final int sw = secondBitmap.getWidth();  
-        final int sh = secondBitmap.getHeight();  
-        Bitmap bitmap = null;  
-        Canvas canvas = null;  
-        if(direction == TOP) {  
-            bitmap = Bitmap.createBitmap(sw > fw ? sw : fw, fh + sh, Config.ARGB_8888);  
-            canvas = new Canvas(bitmap);  
-            canvas.drawBitmap(secondBitmap, 0, 0, null);  
-            canvas.drawBitmap(firstBitmap, 0, sh, null);  
-        } else if(direction == BOTTOM) {  
-            bitmap = Bitmap.createBitmap(fw > sw ? fw : sw, fh + sh, Config.ARGB_8888);  
-            canvas = new Canvas(bitmap);  
-            canvas.drawBitmap(firstBitmap, 0, 0, null);  
-            canvas.drawBitmap(secondBitmap, 0, fh, null);  
-        } else if(direction == LEFT) {  
-            bitmap = Bitmap.createBitmap(fw + sw, sh > fh ? sh : fh, Config.ARGB_8888);  
-            canvas = new Canvas(bitmap);  
-            canvas.drawBitmap(secondBitmap, 0, 0, null);  
-            canvas.drawBitmap(firstBitmap, sw, 0, null);  
-        } else if(direction == RIGHT) {  
-            bitmap = Bitmap.createBitmap(fw + sw, fh > sh ? fh : sh,  
-                    Config.ARGB_8888);  
-            canvas = new Canvas(bitmap);  
-            canvas.drawBitmap(firstBitmap, 0, 0, null);  
-            canvas.drawBitmap(secondBitmap, fw, 0, null);  
-        }  
-        return bitmap;  
-    }  
-      	
-	
-	
-	
-	
-	/**
-	 * 读取图片的旋转的角度,部分图片带有旋转角度,可以通过这个方法来获取
-	 *
-	 * @param imagePath
-	 *            图片绝对路径
-	 * @return  
-	 * 			    图片的旋转角度
-	 */
-	public static int getBitmapDegree(String imagePath) {
-	    int degree = 0;
-	    try {
-	        // 从指定路径下读取图片，并获取其EXIF信息
-	        ExifInterface exifInterface = new ExifInterface(imagePath);
-	        // 获取图片的旋转信息
-	        int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,
-	                ExifInterface.ORIENTATION_NORMAL);
-	        switch (orientation) {
-	        case ExifInterface.ORIENTATION_ROTATE_90:
-	            degree = 90;
-	            break;
-	        case ExifInterface.ORIENTATION_ROTATE_180:
-	            degree = 180;
-	            break;
-	        case ExifInterface.ORIENTATION_ROTATE_270:
-	            degree = 270;
-	            break;
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	    return degree;
-	}
-	
-	/** 
-     * 将Drawable转为Bitmap对象 
-     * @param drawable 
-     * @return 
-     */  
-    public static Bitmap drawable2Bitmap(Drawable drawable) {  
-        return ((BitmapDrawable)drawable).getBitmap();  
-    }  
-      
-      
-    /** 
-     * 将Bitmap转换为Drawable对象 
-     * @param bitmap 
-     * @return 
-     */  
-    @SuppressWarnings("deprecation")
-	public static Drawable bitmap2Drawable(Bitmap bitmap) {  
-        Drawable drawable = new BitmapDrawable(bitmap);  
-        return drawable;  
-    }  
-      
-    /** 
-     * Bitmap转byte[] 
-     * @param bitmap 
-     * @return 
-     */  
-    public static byte[] bitmap2Byte(Bitmap bitmap) {  
-        ByteArrayOutputStream out = new ByteArrayOutputStream();  
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);  
-        return out.toByteArray();  
-    }  
-      
-    /** 
-     * byte[]转Bitmap 
-     * @param data 
-     * @return 
-     */  
-    public static Bitmap byte2Bitmap(byte[] data) {  
-        if(data.length != 0) {  
-            return BitmapFactory.decodeByteArray(data, 0, data.length);  
-        }  
-        return null;  
+    private static final int INSAMPLE_SIZE = 8;
+    private static final int QUALITY = 20;
+
+    private ImageUtil() {
+    }
+
+    public static boolean isSquare(String imagePath) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(imagePath, options);
+        return options.outHeight == options.outWidth;
+    }
+
+    public static void asyncLoadImage(Context context,Uri imageUri, LoadImageCallback callback) {
+        new LoadImageUriTask(context,imageUri, callback).execute();
+    }
+
+    //异步加载缩略图
+    public static void asyncLoadSmallImage(Context context, Uri imageUri, LoadImageCallback callback) {
+        new LoadSmallPicTask(context, imageUri, callback).execute();
+    }
+
+    //得到指定大小的Bitmap对象
+    public static Bitmap getResizedBitmap(Context context, Uri imageUri, int width, int height) {
+        InputStream inputStream = null;
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            inputStream = context.getContentResolver().openInputStream(imageUri);
+            BitmapFactory.decodeStream(inputStream, null, options);
+
+            options.outWidth = width;
+            options.outHeight = height;
+            options.inJustDecodeBounds = false;
+            IOUtil.closeStream(inputStream);
+            inputStream = context.getContentResolver().openInputStream(imageUri);
+            return BitmapFactory.decodeStream(inputStream, null, options);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            IOUtil.closeStream(inputStream);
+        }
+        return null;
     }
 
     /**
-     * 截图
+     * 判断是否有SD卡
      *
-     * @param v
-     *            需要进行截图的控件
-     * @return 该控件截图的Bitmap对象。
+     * @return true为有SDcard，false则表示没有
      */
-    public static Bitmap captureView(View v) {
-        v.setDrawingCacheEnabled(true);
-        v.buildDrawingCache();
-        return v.getDrawingCache();
+    public static boolean hasSdcard() {
+        boolean hasCard = false;
+        String state = Environment.getExternalStorageState();
+        if (state.equals(Environment.MEDIA_MOUNTED)) {
+            hasCard = true;
+        }
+        return hasCard;
+    }
+
+    /**
+     * 使用系统当前日期加以调整作为照片的名称
+     *
+     * @return String 文件拍照名字
+     */
+    public static String getPhotoFileName() {
+        java.util.Date date = new java.util.Date(System.currentTimeMillis());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA);
+        return dateFormat.format(date) + ".jpg";
+    }
+
+    /**
+     * 加载本地图片 http://bbs.3gstdy.com
+     *
+     * @param url 本地图片路径
+     * @return Bitmap Bitmap对象
+     */
+    public static Bitmap getLocalBitmap(String url) {
+        try {
+            FileInputStream fis = new FileInputStream(url);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            // 降低图片质量，降低OOM几率
+            options.inSampleSize = INSAMPLE_SIZE;
+            options.inPreferredConfig = Bitmap.Config.RGB_565;
+            Bitmap bitmap = BitmapFactory.decodeStream(fis, null, options);
+            int degree = readPictureDegree(url);
+            if (degree != 0) {// 旋转照片角度
+                bitmap = rotateBitmap(bitmap, degree);
+            }
+            return bitmap;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 及时扫描拍照后的照片，在相册就能看到
+     *
+     * @param context 上下文对象
+     * @param path    照片的路径
+     */
+    public static void scanMedia(Context context, String path) {
+        File file = new File(path);
+        Uri uri = Uri.fromFile(file);
+        Intent scanFileIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+        context.sendBroadcast(scanFileIntent);
+    }
+
+    public static String saveBitmap2Jpg(Context context, Bitmap bitmap) throws IOException {
+        File photoFile = getOwnCacheDirectory(context);
+        return saveBitmap2Jpg(context, bitmap, photoFile);
+    }
+
+    public static String saveBitmap2Jpg(Context context, Bitmap bitmap, File photoFile) throws IOException {
+        Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.RGB_565);
+        Canvas canvas = new Canvas(newBitmap);
+        canvas.drawColor(Color.WHITE);
+        canvas.drawBitmap(bitmap, 0, 0, null);
+        OutputStream stream = new FileOutputStream(photoFile);
+        newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        stream.close();
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        Uri contentUri = Uri.fromFile(photoFile);
+        mediaScanIntent.setData(contentUri);
+        context.sendBroadcast(mediaScanIntent);
+        return photoFile.getAbsolutePath();
+    }
+
+    /**
+     * 根据指定的图像路径和大小来获取缩略图 此方法有两点好处：
+     * 1. 使用较小的内存空间，第一次获取的bitmap实际上为null，只是为了读取宽度和高度，
+     * 第二次读取的bitmap是根据比例压缩过的图像，第三次读取的bitmap是所要的缩略图。
+     * 2. 缩略图对于原图像来讲没有拉伸，这里使用了2.2版本的新工具ThumbnailUtils，使用这个工具生成的图像不会被拉伸。
+     *
+     * @param filePath 图像的路径
+     * @param width    指定输出图像的宽度
+     * @param height   指定输出图像的高度
+     * @return 生成的缩略图
+     */
+    public static Bitmap getImageThumbnail(String filePath, int width, int height) {
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(filePath, options);
+        options.inSampleSize = calculateInSampleSize(options, width, height);
+        options.inJustDecodeBounds = false;
+        Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
+        int degree = readPictureDegree(filePath);
+        if (degree != 0) {// 旋转照片角度
+            bitmap = rotateBitmap(bitmap, degree);
+        }
+        return bitmap;
+    }
+
+    /**
+     * @param bitmap 原图
+     * @return 缩放截取正中部分后的位图。
+     */
+    public static Bitmap centerSquareScaleBitmap(Bitmap bitmap, Matrix m) {
+        if (null == bitmap) {
+            return null;
+        }
+        Bitmap result;
+        int widthOrg = bitmap.getWidth();
+        int heightOrg = bitmap.getHeight();
+        int edgeLength = Math.min(widthOrg, heightOrg);
+        try {
+            if (widthOrg > edgeLength) {
+                result = Bitmap.createBitmap(bitmap, (widthOrg - edgeLength) / 2, 0, edgeLength, edgeLength, m, true);
+            } else {
+                result = Bitmap.createBitmap(bitmap, 0, (heightOrg - edgeLength) / 2, edgeLength, edgeLength, m, true);
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return result;
+    }
+
+    public static int readPictureDegree(String path) {
+        int degree = 0;
+        try {
+            ExifInterface exifInterface = new ExifInterface(path);
+            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL);
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    degree = 90;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    degree = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    degree = 270;
+                    break;
+                default:
+                    break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return degree;
+    }
+
+    /**
+     计算图片的缩放值
+     */
+    public static int calculateInSampleSize(BitmapFactory.Options options, int requestWidth, int requestHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+        if (height > requestHeight || width > requestWidth) {
+            final int heightRatio = Math.round((float) height / (float) requestHeight);
+            final int widthRatio = Math.round((float) width / (float) requestWidth);
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+        return inSampleSize;
+    }
+
+    private static File getOwnCacheDirectory(Context context) {
+        File imgDir = null;
+        if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+            imgDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+        }
+        if (imgDir == null || (!imgDir.exists() && !imgDir.mkdirs())) {
+            imgDir = context.getCacheDir();
+        }
+        return new File(imgDir, System.currentTimeMillis() + ".jpeg");
+    }
+
+    /**
+     * 旋转图片
+     * @param bitmap
+     * @param degress
+     * @return
+     */
+    public static Bitmap rotateBitmap(Bitmap bitmap, int degress) {
+        if (bitmap != null) {
+            Matrix m = new Matrix();
+            m.postRotate(degress);
+            bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, true);
+            return bitmap;
+        }
+        return bitmap;
+    }
+
+    /**
+     * drawable2Bitmap
+     * @param drawable
+     * @return
+     */
+    public static Bitmap drawable2Bitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+        int width = drawable.getIntrinsicWidth();
+        width = width > 0 ? width : 1;
+        int height = drawable.getIntrinsicHeight();
+        height = height > 0 ? height : 1;
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
+
+    /**
+     * 通过Uri获得bitmap
+     *
+     * @param uri          图像的uri对象
+     * @param inSampleSize 图像质量因素
+     * @return Bitmap 对象
+     */
+    public static Bitmap getBitmapFromUri(Context context, Uri uri, int inSampleSize) {
+        Bitmap bitmap = null;
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = inSampleSize;
+            InputStream inputStream = context.getContentResolver().openInputStream(uri);
+            bitmap = BitmapFactory.decodeStream(inputStream, null, options);
+            int degree = readPictureDegree(uri.getPath());
+            if (degree != 0) {// 旋转照片角度
+                bitmap = rotateBitmap(bitmap, degree);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
+    /*
+     * 压缩图片，处理某些手机拍照角度旋转的问题
+	 */
+    public static String compressImage(String filePath, File imageDir, String fileName) throws FileNotFoundException {
+        Bitmap bm = getImageThumbnail(filePath, 480, 800);
+        File outputFile = new File(imageDir, fileName);
+        if (outputFile.exists()) {
+            outputFile.delete();
+        }
+        FileOutputStream out = new FileOutputStream(outputFile);
+        bm.compress(Bitmap.CompressFormat.JPEG, QUALITY, out);
+        try {
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return outputFile.getPath();
+    }
+
+    //异步加载图片回调
+    public interface LoadImageCallback {
+        void callback(Bitmap result);
+    }
+
+    private static class LoadImageUriTask extends AsyncTask<Void, Void, Bitmap> {
+    	private final Context context;
+        private final Uri imageUri;
+        private LoadImageCallback callback;
+
+        @SuppressWarnings("unused")
+		public LoadImageUriTask(Context context,Uri imageUri, LoadImageCallback callback) {
+        	this.context = context;
+            this.imageUri = imageUri;
+            this.callback = callback;
+        }
+
+        @Override
+        protected Bitmap doInBackground(Void... params) {
+            try {
+                InputStream inputStream;
+                if (imageUri.getScheme().startsWith("http")
+                        || imageUri.getScheme().startsWith("https")) {
+                    inputStream = new URL(imageUri.toString()).openStream();
+                    return BitmapFactory.decodeStream(inputStream);
+                } else {
+                    return getBitmapFromUri(context, imageUri, 1);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            super.onPostExecute(result);
+            callback.callback(result);
+        }
+    }
+
+    private static class LoadSmallPicTask extends AsyncTask<Void, Void, Bitmap> {
+
+        private final Uri imageUri;
+        private final Context context;
+        private LoadImageCallback callback;
+
+        public LoadSmallPicTask(Context context, Uri imageUri, LoadImageCallback callback) {
+            this.imageUri = imageUri;
+            this.context = context;
+            this.callback = callback;
+        }
+
+        @Override
+        protected Bitmap doInBackground(Void... params) {
+            return getResizedBitmap(context, imageUri, 200, 200);
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            super.onPostExecute(result);
+            callback.callback(result);
+        }
     }
 }
