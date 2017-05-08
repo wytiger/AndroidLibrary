@@ -233,6 +233,48 @@ public class ImageUtil {
     }
 
     /**
+     * 根据指定的图像路径和大小来获取缩略图
+     *
+     * @param context 上下文
+     * @param resId   图像id
+     * @param width   指定输出图像的宽度
+     * @param height  指定输出图像的高度
+     * @return 生成的缩略图
+     */
+    public static Bitmap getScaleImage(Context context, int resId, int width, int height) {
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(context.getResources(), resId, options);
+
+        options.inSampleSize = calculateInSampleSize(options, width, height);
+        options.inJustDecodeBounds = false;
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resId, options);
+
+        return bitmap;
+    }
+
+    /**
+     * 根据指定的图像路径和大小来获取缩略图
+     *
+     * @param filePath 图像的路径
+     * @param width    指定输出图像的宽度
+     * @param height   指定输出图像的高度
+     * @return 生成的缩略图
+     */
+    public static Bitmap getScaleImage(String filePath, int width, int height) {
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(filePath, options);
+
+        options.inSampleSize = calculateInSampleSize(options, width, height);
+        options.inJustDecodeBounds = false;
+        Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
+
+        return bitmap;
+    }
+
+
+    /**
      计算图片的缩放值
      */
     public static int calculateInSampleSize(BitmapFactory.Options options, int requestWidth, int requestHeight) {
