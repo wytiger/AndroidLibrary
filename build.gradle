@@ -1,20 +1,17 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
+        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
-        //lambda表达式
-        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
-        //Retrolambda: Lint crashes when using lambda expressions with retrolambda
-        //http://stackoverflow.com/questions/29316332/retrolambda-lint-crashes-when-using-lambda-expressions-with-retrolambda
-        classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
+        classpath 'com.android.tools.build:gradle:3.4.0'
     }
 }
 
 allprojects {
     repositories {
+        google()
         jcenter()
     }
 }
